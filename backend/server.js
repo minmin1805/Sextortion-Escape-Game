@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import path from 'path';
+import connectDB from './lib/db.js';
 
 dotenv.config();
 
@@ -31,6 +32,11 @@ if(process.env.NODE_ENV === "production") {
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    connectDB();
 });
 
 export default app;
+
+
+
+//doanlyminh2005_db_user  6QHlR83Lz2UyvhVj
