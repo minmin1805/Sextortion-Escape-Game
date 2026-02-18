@@ -6,7 +6,7 @@ import { FaLongArrowAltRight } from "react-icons/fa";
 function CorrectPopup({ toggleCorrectPopup }) {
   return (
     <div className="fixed top-0 left-0 w-full h-full bg-black/70 flex justify-center items-center z-50">
-      <div className="bg-[#ddecff] h-auto w-1/3 rounded-2xl border border-black p-2 overflow-y-auto">
+      <div className="bg-[#ddecff] h-auto w-[40%] rounded-2xl border border-black p-2 overflow-y-auto">
         <div className="flex flex-col items-center justify-center bg-white rounded-2xl   overflow-hidden">
           <div className="flex items-center  bg-[#017407] border w-full h-full gap-2 p-1">
             <img src={correctImage} alt="correct image" className="w-[18%]" />
@@ -15,7 +15,6 @@ function CorrectPopup({ toggleCorrectPopup }) {
 
           <div className='flex flex-col items-center justify-center mt-2'>
             <h1 className="text-4xl ">+750 points!</h1>
-            <p>(Answer in 15 seconds)</p>
           </div>
 
           <div className='h-0.5 bg-[#2e0f53] w-[90%] mt-2 mb-2'></div>
@@ -55,7 +54,7 @@ function CorrectPopup({ toggleCorrectPopup }) {
           </div>
 
           <button
-            className="bg-[#9d51fb] text-white px-4 py-6 rounded-2xl h-[30px] mt-3 mb-5 flex items-center justify-center gap-2"
+            className="bg-[#9d51fb] text-white px-4 py-4 rounded-2xl h-[30px] mt-3 mb-5 flex items-center justify-center gap-2"
             onClick={toggleCorrectPopup}
           >
             Next Question <FaLongArrowAltRight />
