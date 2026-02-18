@@ -3,6 +3,7 @@ import GameHeader from '../src/components/GameBanner'
 import AbilityDisplay from '../src/components/AbilityDisplay'
 import ClockDisplay from '../src/components/ClockDisplay'
 import QuestionDisplay from '../src/components/QuestionDisplay'
+import AnswersDisplay from '../src/components/AnswersDisplay'
 
 function GamePage() {
   return (
@@ -10,11 +11,15 @@ function GamePage() {
         
         <GameHeader />
 
-        <div className='flex flex-row w-full justify-center'>
+        <div className='flex flex-row w-full justify-center gap-15 mt-15'>
 
             <AbilityDisplay />
             <QuestionDisplay />
             <ClockDisplay />
+        </div>
+
+        <div className='mt-10'>
+            <AnswersDisplay />
         </div>
     </div>
   )

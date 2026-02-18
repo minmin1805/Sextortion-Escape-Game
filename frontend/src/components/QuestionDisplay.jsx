@@ -5,7 +5,7 @@ import { IoSend } from "react-icons/io5";
 
 function QuestionDisplay() {
   return (
-    <div className="bg-[#ddecff] w-[50%] rounded-2xl flex flex-col justify-center items-center">
+    <div className="bg-[#ddecff] w-[55%] rounded-2xl flex flex-col justify-center items-center">
       <div className="mt-4 mb-4">
         <p className="text-center font-bold text-xl">
           Hi minmin, you just received a message!

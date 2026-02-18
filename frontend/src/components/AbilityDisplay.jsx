@@ -7,11 +7,11 @@ function AbilityDisplay() {
     <div className='flex flex-col justify-center items-center gap-3'>
       <p className='text-3xl text-white font-bold'>Abilities</p>
 
-      <button className='flex items-center justify-center bg-amber-100 rounded-2xl border border-black py-2 px-2'>
+      <button className='flex items-center justify-center bg-amber-100 rounded-2xl border border-black py-2 px-2 text-2xl font-bold gap-2'>
         <img src={lightbulbImage} className='h-10'/>
          Hint(1)</button>
 
-      <button className='flex items-center justify-center bg-[#ddecff] rounded-2xl border border-black py-2 px-2'>
+      <button className='flex items-center justify-center bg-[#ddecff] rounded-2xl border border-black py-2 px-2 text-2xl font-bold gap-2'>
         <img src={remove2Image} className='h-10'/>
         Remove 2 (2)</button>
     </div>
