@@ -2,6 +2,7 @@ import React from "react";
 import backgroundImage from "../src/assets/background/cosmicbackground.png";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { TextAnimate } from "@/components/ui/text-animate"
 
 
 function Frame1() {
@@ -16,9 +17,9 @@ function Frame1() {
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="flex-1 flex items-center justify-center px-4">
-        <h1 className="text-white text-4xl font-bold text-center">
+        <TextAnimate animation="blurInUp" by="character" duration={3} className="text-white text-4xl font-bold text-center">
           Every day, hundreds of teens receive a threatening message...
-        </h1>
+        </TextAnimate>
       </div>
       <button onClick={handleContinue} className="bg-[#8B5CF6] text-white px-4 py-2 rounded-md absolute bottom-10 right-10 flex items-center gap-2">
         Continue <FaLongArrowAltRight />
