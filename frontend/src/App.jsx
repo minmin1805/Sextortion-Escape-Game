@@ -5,6 +5,7 @@ import Frame3 from '../pages/Frame3'
 import InstructionPage from '../pages/InstructionPage'
 import GamePage from '../pages/GamePage'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import EndgamePage from '../pages/EndgamePage'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <Route path='/frame3' element={<Frame3 />} />
         <Route path='/game' element={<GamePage />} />
         <Route path='/instructions' element={<InstructionPage />} />
+        <Route path='/endgame' element={<EndgamePage />} />
       </Routes>
     </Router>
   )
