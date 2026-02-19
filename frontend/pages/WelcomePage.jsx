@@ -4,7 +4,6 @@ import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
 import { useGame } from '../context/GameContext';
-
 function WelcomePage() {
 
     const [username, setUserName] = useState("");
@@ -16,7 +15,26 @@ function WelcomePage() {
     };
 
   return (
-    <div className='bg-[#b885f6] min-h-screen flex flex-col items-center justify-center'>
+    <div className="min-h-screen flex flex-col items-center justify-center relative">
+      <style>{`
+        .welcome-bg {
+          background: linear-gradient(90deg, #FFFFFF, #E0ACFF, #A4A4FF);
+          background-size: 300% 300%;
+          animation: welcome-gradient 4s alternate infinite;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          z-index: 0;
+        }
+        @keyframes welcome-gradient {
+          0% { background-position: 0%; }
+          100% { background-position: 100%; }
+        }
+      `}</style>
+      <div className="welcome-bg" aria-hidden="true" />
+      <div className="relative z-10 w-full flex flex-col items-center justify-center">
         <div className='w-[50%]'>
             <img src={logo} />
         </div>
@@ -43,6 +61,7 @@ function WelcomePage() {
                 Start the Game
             </button>
         </div>
+      </div>
     </div>
   )
 }
