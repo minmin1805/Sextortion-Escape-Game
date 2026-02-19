@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import mongoose from 'mongoose';
 import Player from '../models/Player.js';
 
 export const createPlayer = async (req, res) => {
@@ -85,13 +86,13 @@ export const updatePlayer = async (req, res) => {
 export const getLeaderboard = async (req, res) => {
     try {
         
-        const limit = parseInt(req.query.limit);
+        const limit = Math.min(parseInt(req.query.limit, 10) || 4, 20);
 
-        const foundPlayers = Player.find({ completedAt: {$ne : null}})
-        .sort({score: -1})
-        .limit(limit)
-        .select('name score correctAnswers badge')
-        .lean();
+        const foundPlayers = await Player.find({ completedAt: { $ne: null } })
+            .sort({ score: -1 })
+            .limit(limit)
+            .select('name score correctAnswers badge')
+            .lean();
 
         res.status(200).json(foundPlayers);
     } catch (error) {

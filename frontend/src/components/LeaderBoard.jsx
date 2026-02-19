@@ -15,12 +15,16 @@ function LeaderBoard({ leaderboardData = [] }) {
 
           {leaderboardData.map((item, index) => (
             <div key={item.isCurrent ? "you" : `${item.name}-${item.score}-${index}`} className="flex flex-col gap-2">
-              <div className="flex items-center justify-between gap-">
+              <div className="grid gap-8 items-center" style={{ gridTemplateColumns: "1.15fr 0.7fr 1.15fr" }}>
                 <p className="text-xl">
                   {index + 1}. {item.isCurrent ? "YOU" : item.name}
                 </p>
-                <p className="text-xl">{item.score} Points</p>
-                <p className="text-xl">{item.badge ?? item.level ?? ""}</p>
+                <p className="text-xl text-right tabular-nums">
+                  {item.score} Points
+                </p>
+                <p className="text-xl text-right">
+                  {item.badge ?? item.level ?? ""}
+                </p>
               </div>
 
               <div className="h-0.5 bg-[#2e0f53] w-full mt-2 mb-2"></div>

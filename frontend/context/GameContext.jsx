@@ -35,20 +35,21 @@ export function GameProvider({children}) {
     const currentScenario = scenarios[currentScenarioIndex] ?? null;
     const visibleOptions = filteredOptions ?? currentScenario?.options ?? [];
 
+    // Timer counts down (30 → 0). More time remaining = answered faster = more points.
     const getPointsForTime = (timeRemaining, isCorrect) => {
         if(!isCorrect) {
             return 0;
         }
-        if(timeRemaining <= 10) {
-            return 500;
+        if(timeRemaining > 25) {
+            return 1500;  // answered in first 5 seconds
         }
-        if(timeRemaining <= 20) {
-            return 1000;
+        if(timeRemaining > 20) {
+            return 1000;  // answered in 5–10 seconds
         }
-        if(timeRemaining <= 25) {
-            return 1500;
+        if(timeRemaining > 10) {
+            return 500;   // answered in 10–20 seconds
         }
-        return 0;
+        return 250;       // answered with ≤10 seconds left (still correct)
     }
 
     const getBadgeForScore = (score) => {
@@ -80,6 +81,18 @@ export function GameProvider({children}) {
             setPlayerId(data.id);
             setSessionId(data.sessionId);
             setPlayerName(name.trim());
+            // Reset game state so new player starts at question 1
+            setCurrentScenarioIndex(0);
+            setScore(0);
+            setCorrectAnswers(0);
+            setHintUsed(0);
+            setRemoveTwoUsed(0);
+            setGameComplete(false);
+            setFilteredOptions(null);
+            setShowFeedback(null);
+            setLastFeedback(null);
+            setLastPoints(0);
+            setLastAnswerCorrect(false);
             navigate('/instructions');
         } catch (error) {
             console.error("Error creating player:", error);
