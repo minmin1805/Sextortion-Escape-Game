@@ -3,15 +3,16 @@ import logo from '../src/assets/WelcomePage/logo.png';
 import { motion } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { useState } from 'react';
+import { useGame } from '../context/GameContext';
 
 function WelcomePage() {
 
     const [username, setUserName] = useState("");
-
+    const { createPlayerAndGo, playerError } = useGame();
     const navigate = useNavigate();
 
     const handleContinue = () => {
-        navigate('/instructions')
+        createPlayerAndGo(username, navigate);
     };
 
   return (
@@ -32,7 +33,13 @@ function WelcomePage() {
                 className='border text-center w-full px-25 py-2 mt-4 bg-white border-black'
             />
 
-            <button className='py-2 px-5 bg-[#1858be] mt-5 rounded-2xl text-white font-bold text-2xl' onClick={(e) => {handleContinue()}}>
+            {playerError && <p className="text-red-600 mt-2">{playerError}</p>}
+
+            <button 
+                className='py-2 px-5 bg-[#1858be] mt-5 rounded-2xl text-white font-bold text-2xl disabled:opacity-50 disabled:cursor-not-allowed' 
+                onClick={() => handleContinue()}
+                disabled={!username || username.trim() === ''}
+            >
                 Start the Game
             </button>
         </div>
