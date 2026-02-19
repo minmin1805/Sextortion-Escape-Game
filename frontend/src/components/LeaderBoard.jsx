@@ -50,7 +50,7 @@ function LeaderBoard() {
                 <p className="text-xl">{item.level}</p>
               </div>
 
-              <div className="h-0.5 bg-[#2e0f53] w-[100%] mt-2 mb-2"></div>
+              <div className="h-0.5 bg-[#2e0f53] w-full mt-2 mb-2"></div>
             </div>
           ))}
         </div>
