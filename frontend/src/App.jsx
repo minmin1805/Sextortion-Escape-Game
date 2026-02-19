@@ -4,12 +4,13 @@ import Frame2 from '../pages/Frame2'
 import Frame3 from '../pages/Frame3'
 import InstructionPage from '../pages/InstructionPage'
 import GamePage from '../pages/GamePage'
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import EndgamePage from '../pages/EndgamePage'
+import { GameProvider } from '../context/GameContext'
 
 function App() {
-
   return (
+    <GameProvider>
     <Router>
       <Routes>
         <Route path='/' element={<WelcomePage />} />
@@ -21,6 +22,7 @@ function App() {
         <Route path='/endgame' element={<EndgamePage />} />
       </Routes>
     </Router>
+    </GameProvider>
   )
 }
 

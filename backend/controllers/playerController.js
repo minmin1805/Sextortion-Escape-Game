@@ -80,3 +80,24 @@ export const updatePlayer = async (req, res) => {
         res.status(500).json({error: 'Internal server error'});
     }
 }
+
+
+export const getLeaderboard = async (req, res) => {
+    try {
+        
+        const limit = parseInt(req.query.limit);
+
+        const foundPlayers = Player.find({ completedAt: {$ne : null}})
+        .sort({score: -1})
+        .limit(limit)
+        .select('name score correctAnswers badge')
+        .lean();
+
+        res.status(200).json(foundPlayers);
+    } catch (error) {
+        console.error("error when fetching the leaderboard", error);
+        res.status(500).json({
+            error: "internal server error"
+        })
+    }
+}

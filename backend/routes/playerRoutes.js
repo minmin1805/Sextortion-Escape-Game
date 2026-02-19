@@ -1,8 +1,8 @@
 import express from 'express';
-import {createPlayer, updatePlayer} from "../controllers/playerController.js";
+import { createPlayer, updatePlayer, getLeaderboard } from "../controllers/playerController.js";
 
 const router = express.Router();
-
+router.get("/leaderboard, getLeaderboard");
 router.post("/", createPlayer);
 router.patch("/:id", updatePlayer);
 

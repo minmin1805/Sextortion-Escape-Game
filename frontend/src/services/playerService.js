@@ -19,8 +19,22 @@ const updatePlayer = async (playerId, data) => {
         return response.data;
     }
     else {
-        throw new Error('Failed to update player');
+        throw new Error("cannot update the player");
     }
 }
 
-export { createPlayer, updatePlayer };
+
+const getLeaderboard = async (limit = 4) => {
+    const response = await axios.get(`${PLAYER_API_URL}/leaderboard`, {
+        params: {limit},
+    }),
+    if(response.status === 200) {
+        return response.data;
+    }
+    else {
+        throw new Error("cannot get the leaderboard data");
+    }
+}
+
+
+export { createPlayer, updatePlayer, getLeaderboard };

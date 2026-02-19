@@ -3,34 +3,7 @@ import rankingImage from "../assets/LearderBoard/rankingimage.png";
 import checkImage from "../assets/LearderBoard/checkimage.png";
 import arrowImage from '../assets/LearderBoard/arrowimage.png';
 
-function LeaderBoard() {
-  const leaderboardData = [
-    {
-      name: "John Doe",
-      points: 1000,
-      level: "EXPERT",
-    },
-    {
-      name: "Jane Doe",
-      points: 2000,
-      level: "EXPERT",
-    },
-    {
-      name: "Bob",
-      points: 3000,
-      level: "EXPERT",
-    },
-    {
-      name: "Alice",
-      points: 4000,
-      level: "EXPERT",
-    },
-    {
-      name: "YOU",
-      points: 5000,
-      level: "EXPERT",
-    },
-  ];
+function LeaderBoard({ leaderboardData = [] }) {
   return (
     <div className="flex flex-col items-center justify-center w-full">
       <div className="bg-[#ddecff] rounded-2xl p-5 flex flex-col items-center justify-center w-[90%]">
@@ -41,13 +14,13 @@ function LeaderBoard() {
           </div>
 
           {leaderboardData.map((item, index) => (
-            <div className="flex flex-col gap-2">
+            <div key={item.isCurrent ? "you" : `${item.name}-${item.score}-${index}`} className="flex flex-col gap-2">
               <div className="flex items-center justify-between gap-">
                 <p className="text-xl">
-                  {index + 1}. {item.name}
+                  {index + 1}. {item.isCurrent ? "YOU" : item.name}
                 </p>
-                <p className="text-xl">{item.points} Points</p>
-                <p className="text-xl">{item.level}</p>
+                <p className="text-xl">{item.score} Points</p>
+                <p className="text-xl">{item.badge ?? item.level ?? ""}</p>
               </div>
 
               <div className="h-0.5 bg-[#2e0f53] w-full mt-2 mb-2"></div>
