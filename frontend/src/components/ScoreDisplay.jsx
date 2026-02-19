@@ -2,7 +2,7 @@ import React from "react";
 import { useGame } from "../../context/GameContext";
 // Badge images – add more imports when you have assets for each tier
 import safetyScholarBadgeImage from "../assets/EndgamePage/safetyscholarbadgeimage.png";
-import safetyScholarTitle from "../assets/EndgamePage/safetyscholartitle.png";
+import safetyScholarTitleImage from "../assets/EndgamePage/safetyscholartitle.png";
 import sextortionExpertBadgeImage from "../assets/EndgamePage/sextortionexpertbadgeimage.png";
 import sextortionExpertTitleImage from "../assets/EndgamePage/sextortionexperttitleimage.png";
 import learningDefenderBadgeImage from "../assets/EndgamePage/learningdefenderbadgeimage.png";
@@ -42,7 +42,7 @@ export default function ScoreDisplay() {
           <img
             src={images.badge}
             alt={`${badge ?? "Badge"} badge`}
-            className="w-[50%]"
+            className="w-[90%]"
           />
         )}
 
@@ -54,7 +54,7 @@ export default function ScoreDisplay() {
           <img
             src={images.title}
             alt={`${badge ?? "Badge"} title`}
-            className="w-[50%] mt-4 mb-3"
+            className="w-[90%] mt-4 mb-3"
           />
         )}
       </div>

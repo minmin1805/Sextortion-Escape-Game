@@ -1,8 +1,14 @@
 import React from 'react'
 
-function ChoiceBox({ color, letter, text }) {
+function ChoiceBox({ color, letter, text, onClick }) {
   return (
-    <div className='rounded-xl border-2 border-black overflow-hidden h-[80px] flex'>
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && onClick?.()}
+      className="rounded-xl border-2 border-black overflow-hidden h-[80px] flex cursor-pointer hover:opacity-90"
+    >
       {/* Left: letter square (full height, color) */}
       <div
         style={{ backgroundColor: color ?? '#ccc' }}
