@@ -13,7 +13,8 @@ function App() {
     <GameProvider>
     <Router>
       <Routes>
-        <Route path='/' element={<WelcomePage />} />
+        <Route path='/' element={<Frame1 />} />
+        <Route path='/welcome' element={<WelcomePage />} />
         <Route path='/frame1' element={<Frame1 />} />
         <Route path='/frame2' element={<Frame2 />} />
         <Route path='/frame3' element={<Frame3 />} />

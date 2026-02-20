@@ -9,7 +9,7 @@ function Frame3() {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    navigate("/");
+    navigate("/welcome");
   };
 
   return (

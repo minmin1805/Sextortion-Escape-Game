@@ -102,7 +102,7 @@ function EndgamePage() {
         <button
           type="button"
           className="bg-[#ddecff] text-blue-900 px-4 py-2 rounded-md text-xl font-bold"
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/welcome")}
         >
           Exit To Main Menu
         </button>
