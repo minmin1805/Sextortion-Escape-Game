@@ -3,14 +3,23 @@ import remove2Image from "../assets/GamePage/remove2.png";
 import lightbulbImage from "../assets/GamePage/lightbulbicon.png";
 import { useGame } from "../../context/GameContext";
 
-function AbilityDisplay() {
+function AbilityDisplay({ showHintModal: showHintModalProp, onHintOpen, onCloseHint }) {
   const { useHint, useRemoveTwo, hintUsed, removeTwoUsed, currentScenario } = useGame();
-  const [showHintModal, setShowHintModal] = useState(false);
+  const [localHintOpen, setLocalHintOpen] = useState(false);
+  const showHintModal = showHintModalProp !== undefined ? showHintModalProp : localHintOpen;
+  const openHint = () => {
+    if (onHintOpen) onHintOpen();
+    else setLocalHintOpen(true);
+  };
+  const closeHint = () => {
+    if (onCloseHint) onCloseHint();
+    else setLocalHintOpen(false);
+  };
 
   const onHintClick = () => {
     const atLimit = useHint();
     if (atLimit !== false) {
-      setShowHintModal(true);
+      openHint();
     }
   };
 
@@ -48,7 +57,7 @@ function AbilityDisplay() {
       </button>
 
       {showHintModal && (
-        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50" onClick={() => setShowHintModal(false)}>
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50" onClick={closeHint}>
           <div
             className="bg-[#ddecff] rounded-2xl border-2 border-black p-6 max-w-md shadow-xl"
             onClick={(e) => e.stopPropagation()}
@@ -60,7 +69,7 @@ function AbilityDisplay() {
             <p className="text-black mb-4">{hintText}</p>
             <button
               type="button"
-              onClick={() => setShowHintModal(false)}
+              onClick={closeHint}
               className="w-full bg-[#9d51fb] text-white py-2 rounded-xl font-bold"
             >
               Got it

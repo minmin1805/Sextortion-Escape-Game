@@ -42,7 +42,7 @@ export default function ScoreDisplay() {
           <img
             src={images.badge}
             alt={`${badge ?? "Badge"} badge`}
-            className="w-[90%]"
+            className="w-[250px]"
           />
         )}
 
@@ -54,7 +54,7 @@ export default function ScoreDisplay() {
           <img
             src={images.title}
             alt={`${badge ?? "Badge"} title`}
-            className="w-[90%] mt-4 mb-3"
+            className="w-[300px] mt-4 mb-3"
           />
         )}
       </div>

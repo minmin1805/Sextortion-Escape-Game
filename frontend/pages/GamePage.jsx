@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import GameHeader from "../src/components/GameBanner";
 import AbilityDisplay from "../src/components/AbilityDisplay";
@@ -25,22 +25,39 @@ function GamePage() {
         visibleOptions,
         selectAnswer,
         dismissFeedbackAndAdvance,
+        handleTimeUp,
     } = useGame();
 
     const [timeRemaining, setTimeRemaining] = useState(INITIAL_TIME);
+    const [showHintModal, setShowHintModal] = useState(false);
+    const prevTimeRemainingRef = useRef(INITIAL_TIME);
 
     // Reset timer when advancing to next scenario
     useEffect(() => {
         setTimeRemaining(INITIAL_TIME);
     }, [currentScenarioIndex]);
 
-    // 30s countdown; stop when feedback is showing
+    // When clock hits 0: show feedback only when we *transition* to 0 (not when already 0 after advancing)
     useEffect(() => {
-        if (showFeedback) return;
+        if (timeRemaining !== 0 || showFeedback) {
+            prevTimeRemainingRef.current = timeRemaining;
+            return;
+        }
+        if (prevTimeRemainingRef.current <= 0) {
+            prevTimeRemainingRef.current = timeRemaining;
+            return;
+        }
+        handleTimeUp();
+        prevTimeRemainingRef.current = timeRemaining;
+    }, [timeRemaining, showFeedback, handleTimeUp]);
+
+    // 30s countdown; stop when feedback is showing or hint modal is open
+    useEffect(() => {
+        if (showFeedback || showHintModal) return;
         if (timeRemaining <= 0) return;
         const t = setInterval(() => setTimeRemaining((p) => Math.max(0, p - 1)), 1000);
         return () => clearInterval(t);
-    }, [showFeedback, timeRemaining]);
+    }, [showFeedback, showHintModal, timeRemaining]);
 
     const onContinue = () => dismissFeedbackAndAdvance(navigate);
 
@@ -64,7 +81,11 @@ function GamePage() {
             />
 
             <div className="flex flex-row w-full justify-center gap-15 mt-15">
-                <AbilityDisplay />
+                <AbilityDisplay
+                    showHintModal={showHintModal}
+                    onHintOpen={() => setShowHintModal(true)}
+                    onCloseHint={() => setShowHintModal(false)}
+                />
                 <QuestionDisplay
                     message={currentScenario?.message}
                     question={currentScenario?.question}

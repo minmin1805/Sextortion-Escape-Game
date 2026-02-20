@@ -127,6 +127,23 @@ export function GameProvider({children}) {
 
     }, [currentScenario]);
 
+    const TIMEOUT_FEEDBACK = {
+        title: "Time's Up",
+        reason: "You ran out of time on this question.",
+        consequence: "No points for this one, but you can learn from the feedback.",
+        doThisInstead: "On the next question, read carefully and pick your answer before time runs out.",
+        fact: "If you're ever in a real sextortion situation, tell an adult right away—there's no time limit on getting help.",
+    };
+
+    const handleTimeUp = useCallback(() => {
+        if (!currentScenario) return;
+        if (showFeedback) return;
+        setLastFeedback(TIMEOUT_FEEDBACK);
+        setLastPoints(0);
+        setLastAnswerCorrect(false);
+        setShowFeedback("false");
+    }, [currentScenario, showFeedback]);
+
     const advanceToNextScenario = useCallback(() => {
         setShowFeedback(null);
         setFilteredOptions(null);
@@ -238,6 +255,7 @@ export function GameProvider({children}) {
         dismissFeedbackAndAdvance,
         useHint,
         useRemoveTwo,
+        handleTimeUp,
       };
 
       return <GameContext.Provider value={value}>{children}</GameContext.Provider>

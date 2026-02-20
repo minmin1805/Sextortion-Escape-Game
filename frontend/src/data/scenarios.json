@@ -30,21 +30,19 @@
       },
       "C": {
         "result": "correct",
-        "reason": "Sextortion works by making you feel ashamed and isolated. By telling a trusted adult, you remove the shame and power the blackmailer has over you.",
+        "reason": "Sextortion uses shame and isolation. Telling a trusted adult removes the blackmailer's power.",
         "howThisDefeats": [
           "Blackmailers depend on your shame to keep you silent",
-          "Speaking up breaks their control over you",
-          "You're no longer isolated - you have support",
+          "Speaking up breaks their control",
+          "You're no longer isolated—you have support",
           "Once the secret is out, their threats lose power"
         ],
         "nextSteps": [
           "Adult helps collect evidence (screenshots)",
-          "Report together to TakeItDown.org",
-          "File CyberTipline report",
-          "Block the person",
-          "Contact police if necessary"
+          "Report to TakeItDown.org and CyberTipline",
+          "Block the person; contact police if needed"
         ],
-        "theTruth": "Adults understand you're a victim of a crime. They want to help, not punish. Your embarrassment is temporary, but staying silent keeps you trapped."
+        "theTruth": "Adults see you as a victim of crime and want to help, not punish. Speaking up ends the trap; silence keeps it going."
       },
       "D": {
         "result": "incorrect",
@@ -88,19 +86,17 @@
       },
       "C": {
         "result": "correct",
-        "reason": "90% of financial sextortion victims are males aged 14-17. Teen boys are the primary target demographic.",
+        "reason": "90% of financial sextortion victims are males 14–17. Teen boys are the main target.",
         "howThisDefeats": [
-          "Teenage boys are the MAIN target",
-          "Many boys don't think it will happen to them",
-          "Boys may feel more shame reporting sexual crimes",
-          "Predators specifically seek out this demographic"
+          "Teen boys are the main target",
+          "Many don't think it will happen to them",
+          "Predators seek out this demographic"
         ],
         "nextSteps": [
-          "If you're a male teen (14-17), you ARE in the highest-risk group",
-          "Don't let shame stop you from seeking help",
-          "Reporting is brave and smart"
+          "If you're a male teen 14–17, you're in the highest-risk group",
+          "Don't let shame stop you—reporting is brave and smart"
         ],
-        "theTruth": "If you're a male teen (14-17), you ARE in the highest-risk group. Don't let shame stop you from seeking help. Reporting is brave and smart."
+        "theTruth": "Male teens 14–17 are the highest-risk group. Don't let shame stop you—reporting is brave and smart."
       },
       "D": {
         "result": "incorrect",
@@ -144,20 +140,18 @@
       },
       "C": {
         "result": "correct",
-        "reason": "This person is using emotional blackmail and shame to manipulate you. By telling your parents, you break their emotional control.",
+        "reason": "This is emotional blackmail. Telling your parents breaks their control.",
         "howThisDefeats": [
-          "This person is using your feelings to control you through threats",
-          "They're counting on shame to keep you from telling anyone",
-          "When you tell parents, you expose the manipulation",
-          "Parents provide perspective that this isn't a real relationship"
+          "They use your feelings and shame to control you",
+          "Telling parents exposes the manipulation",
+          "Parents help you see this isn't a real relationship"
         ],
         "nextSteps": [
-          "Block immediately on all platforms",
-          "Report to CyberTipline.org",
-          "Submit request to TakeItDown.org",
-          "Consider reporting to police with parent"
+          "Block on all platforms",
+          "Report to CyberTipline and TakeItDown.org",
+          "Consider reporting to police with a parent"
         ],
-        "theTruth": "Abusive partners use shame and fear to maintain control. Once you tell someone, their manipulation tactics stop working."
+        "theTruth": "Abusers use shame to control you. Telling someone breaks that control and stops their power."
       },
       "D": {
         "result": "incorrect",
@@ -193,21 +187,18 @@
       },
       "B": {
         "result": "correct",
-        "reason": "Even fake AI images are a federal crime. By telling your parents, you remove the shame and fear this threat creates.",
+        "reason": "Even fake AI images are a federal crime. Telling parents removes the shame and fear.",
         "howThisDefeats": [
-          "The shame from AI fakes is just as real as from real images",
-          "Predators use that shame to control you even with fake content",
-          "Telling parents removes the embarrassment they're using as leverage",
-          "You're no longer isolated with this scary threat"
+          "Shame from AI fakes is real—predators use it to control you",
+          "Telling parents removes their leverage",
+          "You're no longer alone with the threat"
         ],
         "nextSteps": [
-          "Parents help document all threats",
-          "Report to TakeItDown.org (handles AI fakes)",
-          "File CyberTipline report",
-          "Police investigate (federal crime)",
-          "Block the person everywhere"
+          "Parents help document threats",
+          "Report to TakeItDown.org (handles AI fakes) and CyberTipline",
+          "Police can investigate; block the person everywhere"
         ],
-        "theTruth": "Even though images are fake, the emotional impact is real. That's what the predator wants. By telling parents, you break that fear cycle."
+        "theTruth": "Fake images still cause real fear—that's what they use. Telling parents breaks the fear cycle."
       },
       "C": {
         "result": "incorrect",
@@ -259,19 +250,17 @@
       },
       "C": {
         "result": "correct",
-        "reason": "45% of sextortion perpetrators still carry out their threats even after receiving payment. Almost half!",
+        "reason": "45% of perpetrators still carry out threats after payment—almost half.",
         "howThisDefeats": [
-          "Paying doesn't guarantee they'll stop or delete",
-          "Nearly half of perpetrators still post the images",
-          "You lose money AND could still be publicly exposed",
+          "Paying doesn't guarantee they'll stop",
+          "You can lose money and still be exposed",
           "Criminals have no reason to keep promises"
         ],
         "nextSteps": [
-          "Never pay sextortion demands",
-          "Report to authorities instead",
+          "Never pay; report to authorities",
           "Images can be removed; predator can be caught"
         ],
-        "theTruth": "Paying = 45% chance images posted + 100% chance of more demands + money lost. Reporting = Images removed + Predator caught + You get support. Never pay sextortion demands."
+        "theTruth": "Paying often fails (45% still post) and invites more demands. Reporting gets images removed, predator caught, and you supported. Never pay."
       },
       "D": {
         "result": "incorrect",
@@ -315,20 +304,17 @@
       },
       "C": {
         "result": "correct",
-        "reason": "Your friend is trapped in shame and fear. By going WITH them to tell an adult, you help them break free from the isolation the blackmailer is using to control them.",
+        "reason": "Your friend is trapped in shame. Going with them to tell an adult helps break the blackmailer's hold.",
         "howThisDefeats": [
-          "They're staying quiet because of overwhelming shame",
-          "The blackmailer is using that shame to keep them silent",
-          "By going together, you help them overcome the embarrassment",
+          "Shame keeps them silent; the blackmailer uses that",
+          "Going together helps them overcome embarrassment",
           "You provide support when they need it most"
         ],
         "nextSteps": [
-          "Offer to be there when they tell parent/counselor",
-          "Help them practice what to say",
-          "Remind them it's not their fault",
-          "Stay supportive after telling"
+          "Offer to be there when they tell a parent or counselor",
+          "Remind them it's not their fault; stay supportive"
         ],
-        "theTruth": "Blackmailer creates shame → Victim stays silent → Blackmailer keeps power. Breaking it: Friend + You + Adult = Shame removed → Power gone."
+        "theTruth": "Shame keeps victims silent and gives blackmailers power. Going together to an adult removes shame and breaks their hold."
       },
       "D": {
         "result": "incorrect",
@@ -364,21 +350,18 @@
       },
       "B": {
         "result": "correct",
-        "reason": "You recognized their trick and saved proof. Having evidence also makes it easier to tell an adult without shame holding you back.",
+        "reason": "You saw their trick and saved proof. Evidence also makes it easier to tell an adult.",
         "howThisDefeats": [
-          "Screenshots give concrete proof to show adults",
-          "Makes explaining easier without reliving embarrassment",
-          "Evidence helps adults understand the situation quickly",
-          "Having proof makes you feel more confident telling someone"
+          "Screenshots give proof to show adults",
+          "Evidence makes explaining easier",
+          "Proof helps you feel confident telling someone"
         ],
         "nextSteps": [
-          "Screenshot ALL Instagram messages",
-          "Don't delete original messages",
-          "Don't switch to Snapchat",
-          "Tell adult and show screenshots",
+          "Screenshot all messages; don't delete or switch apps",
+          "Tell an adult and show screenshots",
           "Report to CyberTipline with evidence"
         ],
-        "theTruth": "They want you to delete evidence AND move to Snapchat where messages disappear. This keeps you isolated with no proof. By saving evidence and telling an adult, you defeat both tactics."
+        "theTruth": "They want evidence gone and you on an app where messages vanish. Saving proof and telling an adult defeats both."
       },
       "C": {
         "result": "incorrect",
@@ -422,19 +405,17 @@
       },
       "B": {
         "result": "correct",
-        "reason": "At least 36 teen suicides have been linked to sextortion since 2021. This is why getting help and breaking the shame cycle is so critical.",
+        "reason": "At least 36 teen suicides have been linked to sextortion since 2021. Getting help is critical.",
         "howThisDefeats": [
-          "Sextortion can lead to tragic outcomes when victims feel trapped",
-          "Telling an adult and getting support can prevent the worst outcomes",
-          "You are not alone - help is available",
+          "Sextortion can have tragic outcomes when victims feel trapped",
+          "Telling an adult and getting support can prevent the worst",
           "Reporting and support save lives"
         ],
         "nextSteps": [
-          "If you or someone you know is in crisis: 988 Suicide & Crisis Lifeline",
-          "Tell a trusted adult immediately",
-          "Report to CyberTipline and 1-800-THE-LOST"
+          "Crisis: 988 Suicide & Crisis Lifeline",
+          "Tell a trusted adult; report to CyberTipline and 1-800-THE-LOST"
         ],
-        "theTruth": "These deaths are why we take sextortion seriously. Telling someone and getting help can save lives - including your own or a friend's."
+        "theTruth": "These deaths are why we take sextortion seriously. Telling someone and getting help can save lives—yours or a friend's."
       },
       "C": {
         "result": "incorrect",
@@ -486,21 +467,18 @@
       },
       "C": {
         "result": "correct",
-        "reason": "You've overcome fear and shame to ask for help. The shame you've carried for 3 days is what the blackmailer wanted - but you're about to break free.",
+        "reason": "You've overcome fear and shame to ask for help. You're about to break free.",
         "howThisDefeats": [
-          "Shame made you think you couldn't tell anyone",
-          "The blackmailer's control grew stronger each day you stayed quiet",
-          "Adults won't be mad you waited - they're glad you're telling now",
-          "Once you tell, you'll realize shame was the trap, honesty is freedom"
+          "Shame made you think you couldn't tell",
+          "Adults won't be mad you waited—they're glad you're telling now",
+          "Once you tell, shame loses its power"
         ],
         "nextSteps": [
-          "Tell adult: \"This started 3 days ago. I was scared. I need help.\"",
-          "Screenshot all messages (old and new)",
-          "Report to TakeItDown.org",
-          "File CyberTipline report",
+          "Tell an adult: \"This started 3 days ago. I need help.\"",
+          "Screenshot all messages; report to TakeItDown.org and CyberTipline",
           "Block the person"
         ],
-        "theTruth": "The shame you carried alone for 3 days will disappear once you share it. It's NEVER too late - 3 days, 3 weeks, or 3 months. Help is always available."
+        "theTruth": "Shame fades once you share it. It's never too late—3 days or 3 months. Help is always there."
       },
       "D": {
         "result": "incorrect",
@@ -544,20 +522,18 @@
       },
       "C": {
         "result": "correct",
-        "reason": "This threat uses your fear of social embarrassment to control you. By telling your counselor and parents, you remove the power this fear has.",
+        "reason": "They use your fear of embarrassment to control you. Telling counselor and parents removes that power.",
         "howThisDefeats": [
-          "Your fear of \"everyone seeing\" is what the blackmailer is using",
-          "School counselors can help manage the social situation",
-          "They can monitor or shut down the group chat if needed",
-          "You're not facing the social fear alone anymore"
+          "Fear of \"everyone seeing\" is what they use",
+          "Counselors can help manage the situation and the group chat",
+          "You're not facing this alone"
         ],
         "nextSteps": [
-          "School counselor provides immediate support",
-          "School can monitor/close the group chat",
-          "Other students warned about scammer",
+          "School counselor for immediate support",
+          "School can monitor or close the group chat",
           "Parents report to police"
         ],
-        "theTruth": "Your reputation comes from how you HANDLE crises, not from what criminals do to you. Students who know you will support you - you're a victim of a crime."
+        "theTruth": "Your reputation is how you handle crises, not what criminals do. People who know you will support you—you're the victim."
       },
       "D": {
         "result": "incorrect",
