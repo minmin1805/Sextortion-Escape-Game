@@ -27,10 +27,11 @@ app.use("/api/players", playerRoutes);
 const PORT = process.env.PORT || 8000;
 
 if(process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "frontend", "dist", "index.html")));
+    const distPath = path.join(__dirname, "frontend", "dist");
+    app.use(express.static(distPath));
 
-    app.get("/*path", (req, res) => {
-        res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+    app.get("*", (req, res) => {
+        res.sendFile(path.join(distPath, "index.html"));
     });
 }
 
