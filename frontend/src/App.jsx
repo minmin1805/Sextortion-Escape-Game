@@ -1,4 +1,5 @@
 import WelcomePage from '../pages/WelcomePage'
+import ContentWarningPage from '../pages/ContentWarningPage'
 import Frame1 from '../pages/Frame1'
 import Frame2 from '../pages/Frame2'
 import Frame3 from '../pages/Frame3'
@@ -13,7 +14,7 @@ function App() {
     <GameProvider>
     <Router>
       <Routes>
-        <Route path='/' element={<Frame1 />} />
+        <Route path='/' element={<ContentWarningPage />} />
         <Route path='/welcome' element={<WelcomePage />} />
         <Route path='/frame1' element={<Frame1 />} />
         <Route path='/frame2' element={<Frame2 />} />
