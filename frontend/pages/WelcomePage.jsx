@@ -18,7 +18,7 @@ function WelcomePage() {
     <div className="min-h-screen flex flex-col items-center justify-center relative">
       <style>{`
         .welcome-bg {
-          background: linear-gradient(90deg, #FFFFFF, #E0ACFF, #A4A4FF);
+          background: linear-gradient(90deg, #FFFFFF, #e4f5f7, #c9eff5);
           background-size: 300% 300%;
           animation: welcome-gradient 4s alternate infinite;
           position: absolute;
