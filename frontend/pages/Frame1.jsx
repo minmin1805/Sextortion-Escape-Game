@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import backgroundImage from "../src/assets/background/cosmicbackground.png";
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { TextAnimate } from "@/components/ui/text-animate"
-
+import { TextAnimate } from "@/components/ui/text-animate";
+import { useMusic } from "../context/MusicContext";
 
 function Frame1() {
   const navigate = useNavigate();
+  const { startMusic } = useMusic();
+
+  useEffect(() => {
+    startMusic();
+  }, [startMusic]);
 
   const handleContinue = () => {
     navigate("/frame2");

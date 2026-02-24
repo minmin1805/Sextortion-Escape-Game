@@ -8,13 +8,37 @@ import GamePage from '../pages/GamePage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import EndgamePage from '../pages/EndgamePage'
 import { GameProvider } from '../context/GameContext'
+import { MusicProvider } from '../context/MusicContext'
+import { SoundProvider, useSounds } from '../context/SoundContext'
+import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import MusicToggleButton from './components/MusicToggleButton'
 
-function App() {
+const GAME_ROUTES = ['/frame1', '/frame2', '/frame3']
+
+function AppContent() {
+  const { playClickSound, playButtonClickSound } = useSounds()
+  const location = useLocation()
+  const showMusicToggle = GAME_ROUTES.includes(location.pathname)
+
+  useEffect(() => {
+    const handleGlobalClick = (ev) => {
+      if (ev.target.closest('[data-skip-global-click-sound]')) return
+      if (ev.target.closest('button, [role="button"]')) {
+        playButtonClickSound()
+      } else {
+        playClickSound()
+      }
+    }
+    document.addEventListener('click', handleGlobalClick, true)
+    return () => document.removeEventListener('click', handleGlobalClick, true)
+  }, [playClickSound, playButtonClickSound])
+
   return (
-    <GameProvider>
-    <Router>
+    <>
+      {showMusicToggle && <MusicToggleButton />}
       <Routes>
-        <Route path='/' element={<ContentWarningPage />} />
+      <Route path='/' element={<ContentWarningPage />} />
         <Route path='/welcome' element={<WelcomePage />} />
         <Route path='/frame1' element={<Frame1 />} />
         <Route path='/frame2' element={<Frame2 />} />
@@ -23,7 +47,20 @@ function App() {
         <Route path='/instructions' element={<InstructionPage />} />
         <Route path='/endgame' element={<EndgamePage />} />
       </Routes>
-    </Router>
+    </>
+  )
+}
+
+function App() {
+  return (
+    <GameProvider>
+      <MusicProvider>
+        <SoundProvider>
+          <Router>
+            <AppContent />
+          </Router>
+        </SoundProvider>
+      </MusicProvider>
     </GameProvider>
   )
 }
