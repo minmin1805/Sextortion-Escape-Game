@@ -8,18 +8,49 @@ import GamePage from '../pages/GamePage'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import EndgamePage from '../pages/EndgamePage'
 import { GameProvider } from '../context/GameContext'
-import { MusicProvider } from '../context/MusicContext'
+import { MusicProvider, useMusic } from '../context/MusicContext'
 import { SoundProvider, useSounds } from '../context/SoundContext'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import MusicToggleButton from './components/MusicToggleButton'
 
-const GAME_ROUTES = ['/frame1', '/frame2', '/frame3']
+const INTRO_MUSIC_ROUTES = ['/frame1', '/frame2', '/frame3', '/welcome']
+const ROUTES_WITH_MUSIC = [
+  '/welcome',
+  '/frame1',
+  '/frame2',
+  '/frame3',
+  '/instructions',
+  '/game',
+  '/endgame',
+]
+
+const CONTENT_WARNING_PATH = '/'
+
+function MusicRouteSync() {
+  const location = useLocation()
+  const { setActiveTrack, startMusic, pauseMusic } = useMusic()
+
+  useEffect(() => {
+    const path = location.pathname
+    if (path === CONTENT_WARNING_PATH) {
+      pauseMusic()
+      return
+    }
+    const track = INTRO_MUSIC_ROUTES.includes(path) ? 'intro' : 'game'
+    setActiveTrack(track)
+    startMusic(track)
+    // Only run when route changes, so toggle state isn't overwritten
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.pathname])
+
+  return null
+}
 
 function AppContent() {
   const { playClickSound, playButtonClickSound } = useSounds()
   const location = useLocation()
-  const showMusicToggle = GAME_ROUTES.includes(location.pathname)
+  const showMusicToggle = ROUTES_WITH_MUSIC.includes(location.pathname)
 
   useEffect(() => {
     const handleGlobalClick = (ev) => {
@@ -36,6 +67,7 @@ function AppContent() {
 
   return (
     <>
+      <MusicRouteSync />
       {showMusicToggle && <MusicToggleButton />}
       <Routes>
       <Route path='/' element={<ContentWarningPage />} />
