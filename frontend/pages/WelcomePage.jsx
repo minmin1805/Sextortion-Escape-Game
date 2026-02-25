@@ -35,11 +35,11 @@ function WelcomePage() {
       `}</style>
       <div className="welcome-bg" aria-hidden="true" />
       <div className="relative z-10 w-full flex flex-col items-center justify-center">
-        <div className='w-[50%]'>
+        <div className='w-[45%]'>
             <img src={logo} />
         </div>
 
-        <div className='flex flex-col items-center justify-center bg-[#f2f9fe] p-5 rounded-2xl mt-5'>
+        <div className='flex flex-col items-center justify-center bg-[#bec0ff] p-5 rounded-2xl mt-20'>
 
             <p className='text-3xl font-bold'>Enter your name...</p>
 

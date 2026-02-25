@@ -34,7 +34,6 @@ function QuestionDisplay({ message, question, playerName }) {
           <div className="border border-black rounded-2xl p-2">
             <LuMessageCircleMore size={25} />
           </div>
-          Type a message...
         </p>
 
         <div className="rounded-2xl border border-black py-2 px-4 mr-4 bg-green-500">
