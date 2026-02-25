@@ -6,7 +6,7 @@ import statsimage from '../assets/IncorrectPage/statsimage.png';
 
 function IncorrectPopup({ feedback, points, onContinue }) {
   return (
-    <div className="fixed w-full h-full bg-black/80 flex flex-col items-center justify-center">
+    <div className="fixed inset-0 z-50 w-full h-full bg-black/80 flex flex-col items-center justify-center">
       <div className="bg-[#ddecff] h-auto w-1/3 p-2 rounded-2xl">
         <div className="flex flex-col bg-white w-full justify-center items-center rounded-2xl overflow-auto">
           <div className="bg-[#e92727] flex items-center w-full">

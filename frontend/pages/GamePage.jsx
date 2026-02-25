@@ -32,7 +32,22 @@ function GamePage() {
     const [timeRemaining, setTimeRemaining] = useState(INITIAL_TIME);
     const [showHintModal, setShowHintModal] = useState(false);
     const [showTransition, setShowTransition] = useState(false);
+    const [pendingAnswer, setPendingAnswer] = useState(null);
     const prevTimeRemainingRef = useRef(INITIAL_TIME);
+    const feedbackTimeoutRef = useRef(null);
+
+    const FEEDBACK_DELAY_MS = 3000;
+
+    useEffect(() => {
+        setPendingAnswer(null);
+        if (feedbackTimeoutRef.current) {
+            clearTimeout(feedbackTimeoutRef.current);
+            feedbackTimeoutRef.current = null;
+        }
+        return () => {
+            if (feedbackTimeoutRef.current) clearTimeout(feedbackTimeoutRef.current);
+        };
+    }, [currentScenarioIndex]);
 
     // "A few days later..." overlay: show for 3s then advance to next level
     useEffect(() => {
@@ -76,8 +91,15 @@ function GamePage() {
         setShowTransition(true);
     };
 
-    const onSelectAnswer = (optionId) => {
-        selectAnswer(optionId, timeRemaining);
+    const onSelectAnswer = (optionId, optionText) => {
+        if (pendingAnswer) return;
+        if (feedbackTimeoutRef.current) clearTimeout(feedbackTimeoutRef.current);
+        setPendingAnswer({ optionId, optionText });
+        feedbackTimeoutRef.current = setTimeout(() => {
+            feedbackTimeoutRef.current = null;
+            selectAnswer(optionId, timeRemaining);
+            setPendingAnswer(null);
+        }, FEEDBACK_DELAY_MS);
     };
 
     return (
@@ -116,6 +138,14 @@ function GamePage() {
                     message={currentScenario?.message}
                     question={currentScenario?.question}
                     playerName={playerName}
+                    selectedAnswerText={pendingAnswer?.optionText}
+                    isTransitioning={showTransition}
+                    isStatsQuestion={currentScenario?.type === "quiz"}
+                    statsFriend={currentScenario?.statsFriend}
+                    correctAnswerType={currentScenario?.correctAnswerType}
+                    trustedAdult={currentScenario?.trustedAdult}
+                    selectedOptionId={pendingAnswer?.optionId}
+                    correctOptionId={currentScenario?.options?.find((o) => o.correct)?.id}
                 />
                 <ClockDisplay timeRemaining={timeRemaining} />
             </div>
@@ -124,6 +154,7 @@ function GamePage() {
                 <AnswersDisplay
                     options={visibleOptions}
                     onSelectAnswer={onSelectAnswer}
+                    disabled={!!pendingAnswer || !!showFeedback}
                 />
             </div>
         </div>

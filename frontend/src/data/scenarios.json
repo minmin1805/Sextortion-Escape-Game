@@ -3,13 +3,15 @@
     "scenarioNumber": 1,
     "type": "threat",
     "difficulty": "easy",
+    "correctAnswerType": "tell_adult",
+    "trustedAdult": "uncle_bill",
     "message": "I have the photo you sent me. Send $100 before tonight or I will post it to everyone at your school.",
     "question": "What should you do?",
     "options": [
-      { "id": "A", "text": "Pay them $100", "correct": false },
-      { "id": "B", "text": "Send more photos as they request", "correct": false },
-      { "id": "C", "text": "Tell a trusted adult immediately", "correct": true },
-      { "id": "D", "text": "Ignore and hope they forget", "correct": false }
+      { "id": "A", "text": "So please don't. I'll give you the $100 right now", "correct": false },
+      { "id": "B", "text": "I'll send more photos if you just don't post that one", "correct": false },
+      { "id": "C", "text": "Tell a trusted adult – parent, counselor, or police", "correct": true },
+      { "id": "D", "text": "I'm not replying. Leave me alone.", "correct": false }
     ],
     "feedback": {
       "A": {
@@ -59,13 +61,14 @@
     "scenarioNumber": 2,
     "type": "quiz",
     "difficulty": "easy",
+    "statsFriend": "jessica",
     "message": "According to NCMEC data, what percentage of financial sextortion victims are males aged 14-17?",
     "question": "According to NCMEC data, what percentage of financial sextortion victims are males aged 14-17?",
     "options": [
-      { "id": "A", "text": "50% (about half)", "correct": false },
-      { "id": "B", "text": "70% (most victims)", "correct": false },
-      { "id": "C", "text": "90% (almost all)", "correct": true },
-      { "id": "D", "text": "30% (less than a third)", "correct": false }
+      { "id": "A", "text": "I think it's about 50%", "correct": false },
+      { "id": "B", "text": "I think it's about 70%", "correct": false },
+      { "id": "C", "text": "I think it's about 90%", "correct": true },
+      { "id": "D", "text": "I think it's about 30%", "correct": false }
     ],
     "feedback": {
       "A": {
@@ -113,13 +116,14 @@
     "scenarioNumber": 3,
     "type": "threat",
     "difficulty": "easy",
+    "correctAnswerType": "block",
     "message": "I thought we had something special. If you don't send more photos, I'll send what you sent me to everyone. The choice is yours.",
     "question": "What should you do?",
     "options": [
-      { "id": "A", "text": "Send more to save the relationship", "correct": false },
-      { "id": "B", "text": "Try to explain our relationship to them", "correct": false },
-      { "id": "C", "text": "Block them and tell your parents", "correct": true },
-      { "id": "D", "text": "Threaten them back", "correct": false }
+      { "id": "A", "text": "I'll send more photos so you don't post anything", "correct": false },
+      { "id": "B", "text": "Hey we had something real – can we please talk?", "correct": false },
+      { "id": "C", "text": "Block the person – cut off contact immediately", "correct": true },
+      { "id": "D", "text": "Hey I know you don't have the power to do that. I dare you.", "correct": false }
     ],
     "feedback": {
       "A": {
@@ -168,13 +172,14 @@
     "scenarioNumber": 4,
     "type": "threat",
     "difficulty": "medium",
+    "correctAnswerType": "report",
     "message": "I used AI to create fake nude videos of you from your Instagram photos. Pay $500 or I upload them everywhere. Everyone will think they are real.",
     "question": "What should you do?",
     "options": [
-      { "id": "A", "text": "Pay to stop fake videos from spreading", "correct": false },
-      { "id": "B", "text": "Tell parents and report even if fake", "correct": true },
-      { "id": "C", "text": "Delete all my social media accounts", "correct": false },
-      { "id": "D", "text": "Ask them to prove the videos exist", "correct": false }
+      { "id": "A", "text": "I'll pay the $500 so you don't post the videos", "correct": false },
+      { "id": "B", "text": "Report online – TakeItDown.org, CyberTipline, platform", "correct": true },
+      { "id": "C", "text": "I'm deleting everything. You get nothing.", "correct": false },
+      { "id": "D", "text": "I don't know you – can you send proof the videos exist first?", "correct": false }
     ],
     "feedback": {
       "A": {
@@ -223,13 +228,14 @@
     "scenarioNumber": 5,
     "type": "quiz",
     "difficulty": "medium",
+    "statsFriend": "thompson",
     "message": "Research shows what percentage of sextortion perpetrators actually carry out their threats (posting images) even AFTER the victim pays?",
     "question": "Research shows what percentage of sextortion perpetrators actually carry out their threats (posting images) even AFTER the victim pays?",
     "options": [
-      { "id": "A", "text": "10% (rarely happens)", "correct": false },
-      { "id": "B", "text": "25% (occasionally happens)", "correct": false },
-      { "id": "C", "text": "45% (almost half)", "correct": true },
-      { "id": "D", "text": "75% (most of the time)", "correct": false }
+      { "id": "A", "text": "I think it's about 10%", "correct": false },
+      { "id": "B", "text": "I think it's about 25%", "correct": false },
+      { "id": "C", "text": "I think it's about 45%", "correct": true },
+      { "id": "D", "text": "I think it's about 75%", "correct": false }
     ],
     "feedback": {
       "A": {
@@ -277,13 +283,15 @@
     "scenarioNumber": 6,
     "type": "threat",
     "difficulty": "medium",
+    "correctAnswerType": "tell_adult",
+    "trustedAdult": "mom",
     "message": "Your friend texts you: 'Someone is sextorting me. They want money and I'm scared. Please don't tell anyone - I'll handle it.'",
     "question": "What should you do?",
     "options": [
-      { "id": "A", "text": "Keep the secret and just support them emotionally", "correct": false },
-      { "id": "B", "text": "Lend them money to pay the person", "correct": false },
-      { "id": "C", "text": "Convince them to tell an adult together", "correct": true },
-      { "id": "D", "text": "Tell your parent to get help for them", "correct": false }
+      { "id": "A", "text": "I keep their secret and just support them", "correct": false },
+      { "id": "B", "text": "I lend them money so they can pay the person", "correct": false },
+      { "id": "C", "text": "Tell a trusted adult – parent, counselor, or police", "correct": true },
+      { "id": "D", "text": "I tell my parent so they can get help for my friend", "correct": false }
     ],
     "feedback": {
       "A": {
@@ -331,13 +339,14 @@
     "scenarioNumber": 7,
     "type": "threat",
     "difficulty": "medium",
+    "correctAnswerType": "report",
     "message": "Delete our Instagram conversation and switch to Snapchat NOW. If you don't act in 10 minutes, I will post your picture. Your Instagram messages are the evidence.",
     "question": "What should you do?",
     "options": [
-      { "id": "A", "text": "Delete the Instagram messages and switch to Snapchat", "correct": false },
-      { "id": "B", "text": "Screenshot the Instagram messages and report", "correct": true },
-      { "id": "C", "text": "Just delete the messages without switching", "correct": false },
-      { "id": "D", "text": "Switch to Snapchat to see what they want", "correct": false }
+      { "id": "A", "text": "Ok I'll delete and switch to Snapchat", "correct": false },
+      { "id": "B", "text": "Report online – TakeItDown.org, CyberTipline, platform", "correct": true },
+      { "id": "C", "text": "I'm not switching. I'll delete the messages but that's it.", "correct": false },
+      { "id": "D", "text": "I'll switch to Snapchat – what do you want?", "correct": false }
     ],
     "feedback": {
       "A": {
@@ -386,13 +395,14 @@
     "scenarioNumber": 8,
     "type": "quiz",
     "difficulty": "medium",
+    "statsFriend": "erica",
     "message": "Since 2021, how many teen suicides have been linked to sextortion in the United States?",
     "question": "Since 2021, how many teen suicides have been linked to sextortion in the United States?",
     "options": [
-      { "id": "A", "text": "12+", "correct": false },
-      { "id": "B", "text": "36+", "correct": true },
-      { "id": "C", "text": "50+", "correct": false },
-      { "id": "D", "text": "100+", "correct": false }
+      { "id": "A", "text": "I think it's 12+", "correct": false },
+      { "id": "B", "text": "I think it's 36+", "correct": true },
+      { "id": "C", "text": "I think it's 50+", "correct": false },
+      { "id": "D", "text": "I think it's 100+", "correct": false }
     ],
     "feedback": {
       "A": {
@@ -440,13 +450,14 @@
     "scenarioNumber": 9,
     "type": "threat",
     "difficulty": "hard",
+    "correctAnswerType": "block",
     "message": "This is the 4th time asking. You've ignored me for 3 days. I'm done. $500 NOW or everything goes public in 1 hour.",
     "question": "What should you do?",
     "options": [
-      { "id": "A", "text": "Pay now to end this", "correct": false },
-      { "id": "B", "text": "Continue ignoring - they haven't done anything yet", "correct": false },
-      { "id": "C", "text": "Tell someone NOW even though I waited", "correct": true },
-      { "id": "D", "text": "Try to find and delete the photos myself", "correct": false }
+      { "id": "A", "text": "I'll pay now, just end this", "correct": false },
+      { "id": "B", "text": "You haven't done anything yet. I'm not responding.", "correct": false },
+      { "id": "C", "text": "Block the person – cut off contact immediately", "correct": true },
+      { "id": "D", "text": "I'll find a way to delete them myself", "correct": false }
     ],
     "feedback": {
       "A": {
@@ -467,18 +478,18 @@
       },
       "C": {
         "result": "correct",
-        "reason": "You've overcome fear and shame to ask for help. You're about to break free.",
+        "reason": "Blocking cuts off contact immediately so they can't keep demanding.",
         "howThisDefeats": [
-          "Shame made you think you couldn't tell",
-          "Adults won't be mad you waited—they're glad you're telling now",
-          "Once you tell, shame loses its power"
+          "They lose the ability to message you",
+          "No more threats or pressure in your inbox",
+          "You can then tell an adult and report with a clear head"
         ],
         "nextSteps": [
-          "Tell an adult: \"This started 3 days ago. I need help.\"",
-          "Screenshot all messages; report to TakeItDown.org and CyberTipline",
-          "Block the person"
+          "Block on all platforms",
+          "Screenshot messages first if you can, then report to TakeItDown.org and CyberTipline",
+          "Tell a trusted adult what happened"
         ],
-        "theTruth": "Shame fades once you share it. It's never too late—3 days or 3 months. Help is always there."
+        "theTruth": "Blocking stops the cycle. Then report and tell an adult so you're not facing this alone."
       },
       "D": {
         "result": "incorrect",
@@ -495,13 +506,15 @@
     "scenarioNumber": 10,
     "type": "threat",
     "difficulty": "hard",
+    "correctAnswerType": "tell_adult",
+    "trustedAdult": "dad",
     "message": "I will post your photo in a classroom group chat with all 200 students. $400 Bitcoin or your reputation will be ruined. 2 hours.",
     "question": "What should you do?",
     "options": [
-      { "id": "A", "text": "Leave the group chat and pretend nothing happened", "correct": false },
-      { "id": "B", "text": "Pay Bitcoin to protect your reputation", "correct": false },
-      { "id": "C", "text": "Tell school counselor and parents immediately", "correct": true },
-      { "id": "D", "text": "Post warning in group chat about the person", "correct": false }
+      { "id": "A", "text": "I'm leaving the chat. I'm not playing this.", "correct": false },
+      { "id": "B", "text": "I'll pay the Bitcoin so you don't post", "correct": false },
+      { "id": "C", "text": "Tell a trusted adult – parent, counselor, or police", "correct": true },
+      { "id": "D", "text": "Hey everyone – this person is trying to blackmail me", "correct": false }
     ],
     "feedback": {
       "A": {
