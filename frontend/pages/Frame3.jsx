@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import backgroundImage from "../src/assets/background/backgroundwithphone.png";
-import textoverlay from "../src/assets/Frame3/textoverlay2.png";
+import textoverlay from "../src/assets/Frame3/textoverlay3.png";
+import phoneSoundSrc from "../src/assets/Sound/phonesound.mp3";
 import { motion } from "motion/react";
 import { FaLongArrowAltRight } from "react-icons/fa";
 
+const PHONE_SOUND_DELAY_MS = 1000;
+const TEXT_OVERLAY_DELAY_S = 2.5;
+
 function Frame3() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const audio = new Audio(phoneSoundSrc);
+    const t = setTimeout(() => {
+      audio.volume = 0.7;
+      audio.play().catch(() => {});
+    }, PHONE_SOUND_DELAY_MS);
+    return () => {
+      clearTimeout(t);
+      audio.pause();
+    };
+  }, []);
 
   const handleContinue = () => {
     navigate("/welcome");
@@ -20,10 +36,10 @@ function Frame3() {
       <motion.img
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 1 }}
+        transition={{ duration: 1, delay: TEXT_OVERLAY_DELAY_S }}
         src={textoverlay}
         alt="textoverlay"
-        className=" absolute top-[53%] left-[53%] transform -translate-x-1/2 -translate-y-1/2 scale-90"
+        className="h-[50%] w-[50%] absolute top-[47%] left-[53%] transform -translate-x-1/2 -translate-y-1/2 scale-90"
       />
 
       <motion.button
@@ -32,7 +48,7 @@ function Frame3() {
         }}
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 2 }}
+        transition={{ duration: 1, delay: TEXT_OVERLAY_DELAY_S + 0.5 }}
         className="absolute bottom-10 right-10 bg-[#8B5CF6] text-white px-4 py-2 rounded-md flex items-center gap-2"
       >
         <FaLongArrowAltRight />
