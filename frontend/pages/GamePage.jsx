@@ -24,13 +24,25 @@ function GamePage() {
         playerName,
         visibleOptions,
         selectAnswer,
+        closeFeedback,
         dismissFeedbackAndAdvance,
         handleTimeUp,
     } = useGame();
 
     const [timeRemaining, setTimeRemaining] = useState(INITIAL_TIME);
     const [showHintModal, setShowHintModal] = useState(false);
+    const [showTransition, setShowTransition] = useState(false);
     const prevTimeRemainingRef = useRef(INITIAL_TIME);
+
+    // "A few days later..." overlay: show for 3s then advance to next level
+    useEffect(() => {
+        if (!showTransition) return;
+        const t = setTimeout(() => {
+            dismissFeedbackAndAdvance(navigate);
+            setShowTransition(false);
+        }, 3000);
+        return () => clearTimeout(t);
+    }, [showTransition, dismissFeedbackAndAdvance, navigate]);
 
     // Reset timer when advancing to next scenario
     useEffect(() => {
@@ -59,14 +71,28 @@ function GamePage() {
         return () => clearInterval(t);
     }, [showFeedback, showHintModal, timeRemaining]);
 
-    const onContinue = () => dismissFeedbackAndAdvance(navigate);
+    const onContinue = () => {
+        closeFeedback();
+        setShowTransition(true);
+    };
 
     const onSelectAnswer = (optionId) => {
         selectAnswer(optionId, timeRemaining);
     };
 
     return (
-        <div className="bg-[#8B5CF6] min-h-screen min-w-screen flex flex-col items-center">
+        <div className="bg-[#8B5CF6] min-h-screen min-w-screen flex flex-col items-center relative">
+            {showTransition && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/85"
+                    aria-live="polite"
+                    aria-label="Transition: a few days later"
+                >
+                    <p className="text-white text-4xl md:text-5xl lg:text-6xl font-bold text-center px-4 animate-pulse">
+                        A few days later...
+                    </p>
+                </div>
+            )}
             {showFeedback === "true" && (
                 <CorrectPopup feedback={lastFeedback} points={lastPoints} onContinue={onContinue} />
             )}

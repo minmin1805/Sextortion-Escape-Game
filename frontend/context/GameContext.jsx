@@ -181,6 +181,11 @@ export function GameProvider({children}) {
         navigate("/endgame")
     }, [playerId, score, correctAnswers]);
 
+    const closeFeedback = useCallback(() => {
+        setShowFeedback(null);
+        setLastFeedback(null);
+    }, []);
+
     const dismissFeedbackAndAdvance = useCallback(async(navigate) => {
         setShowFeedback(null);
         setLastFeedback(null);
@@ -252,6 +257,7 @@ export function GameProvider({children}) {
         selectAnswer,
         advanceToNextScenario,
         finishGame,
+        closeFeedback,
         dismissFeedbackAndAdvance,
         useHint,
         useRemoveTwo,
