@@ -12,6 +12,8 @@ import { IoVideocamOutline, IoCallOutline, IoInformationCircleOutline, IoSendOut
 import { FaImage } from "react-icons/fa";
 
 const BAD_GUY_MESSAGE_DELAY_MS = 2000;
+const CONSEQUENCE_ANIMATION_DELAY = 2;       // seconds before consequence reply fades in (hardcoded in motion)
+const CONSEQUENCE_ANIMATION_DURATION = 0.5;
 
 const STATS_FRIEND = {
   jessica: { name: "Jessica", image: person1 },
@@ -20,9 +22,13 @@ const STATS_FRIEND = {
 };
 
 const TRUSTED_ADULT = {
-  dad: { name: "Dad", image: person4 },
+  dad: { name: "Dad", image: person2 },
   mom: { name: "Mom", image: person5 },
   uncle_bill: { name: "Uncle Bill", image: person6 },
+};
+
+const HELPING_FRIEND = {
+  erica: { name: "Erica", image: person1 },
 };
 
 const NCMEC_MESSAGE = "Hi NCMEC, I am being exploited by this person online. I will send you evidence. Can you help me?";
@@ -44,6 +50,12 @@ function QuestionDisplay({
   trustedAdult,
   selectedOptionId,
   correctOptionId,
+  threadReplyText,
+  threadReplyFrom,
+  isHelpingFriend,
+  helpingFriend,
+  switchedThreadPlayerMessage,
+  playerMessageOverride,
 }) {
   const [showSenderMessage, setShowSenderMessage] = useState(false);
 
@@ -51,6 +63,9 @@ function QuestionDisplay({
   const showBlockAnimation = isCorrectAnswer && correctAnswerType === "block";
   const showReportAnimation = isCorrectAnswer && correctAnswerType === "report";
   const showTellAdultAnimation = isCorrectAnswer && correctAnswerType === "tell_adult";
+  const showSwitchedThreadIncorrect = !!switchedThreadPlayerMessage;
+
+  const playerBubbleText = playerMessageOverride ?? selectedAnswerText;
 
   useEffect(() => {
     if (isTransitioning) {
@@ -77,22 +92,40 @@ function QuestionDisplay({
 
   const isStats = !!isStatsQuestion;
   const friendInfo = isStats && statsFriend ? STATS_FRIEND[statsFriend] : null;
+  const isHelping = !!isHelpingFriend;
+  const helpingFriendInfo = isHelping && helpingFriend ? HELPING_FRIEND[helpingFriend] : null;
 
-  const showSwitchedThread = showReportAnimation || showTellAdultAnimation;
+  const displayMessage = isHelping && message && typeof message === "string"
+    ? message.replace(/\{\{playerName\}\}/g, playerName || "there")
+    : null;
+
+  const showSwitchedThread = showReportAnimation || showTellAdultAnimation || showSwitchedThreadIncorrect;
   const switchedContact = showReportAnimation
     ? { name: "NCMEC", image: NCMECImage, subtitle: "Report & support" }
-    : showTellAdultAnimation && trustedAdult
+    : (showTellAdultAnimation || showSwitchedThreadIncorrect) && trustedAdult
     ? { ...TRUSTED_ADULT[trustedAdult], subtitle: "Active now" }
     : null;
 
+  const displayPlayerBubble = !!playerBubbleText && !showBlockAnimation && !showSwitchedThread;
+
+  const hasDelayedConsequence =
+    threadReplyFrom === "ncmec" ||
+    threadReplyFrom === "trusted_adult" ||
+    (threadReplyFrom === "friend" && isHelpingFriend && isCorrectAnswer);
+  const consequenceDelaySeconds = hasDelayedConsequence ? CONSEQUENCE_ANIMATION_DELAY : 0;
+
   const headerAvatar = showSwitchedThread && switchedContact
     ? switchedContact.image
+    : helpingFriendInfo
+    ? helpingFriendInfo.image
     : friendInfo
     ? friendInfo.image
     : thiefImage;
 
   const headerName = showSwitchedThread && switchedContact
     ? switchedContact.name
+    : helpingFriendInfo
+    ? helpingFriendInfo.name
     : friendInfo
     ? friendInfo.name
     : "Unknown";
@@ -149,7 +182,7 @@ function QuestionDisplay({
       <div className="flex-1 overflow-auto p-4 space-y-3 bg-[#f0f2f5] min-h-[200px]">
         {showSwitchedThread ? (
           <>
-            {/* Switched thread: only player message to NCMEC or trusted adult – fade in */}
+            {/* Switched thread: player message then reply from NCMEC or trusted adult */}
             <motion.div
               initial={{ opacity: 0, x: 12 }}
               animate={{ opacity: 1, x: 0 }}
@@ -164,15 +197,33 @@ function QuestionDisplay({
                     transition={{ delay: 0.15, duration: 0.45, ease: "easeOut" }}
                     className="text-lg whitespace-pre-line"
                   >
-                    {showReportAnimation ? NCMEC_MESSAGE : getTrustedAdultMessage(trustedAdult)}
+                    {switchedThreadPlayerMessage ?? (showReportAnimation ? NCMEC_MESSAGE : getTrustedAdultMessage(trustedAdult))}
                   </motion.p>
                 </div>
               </div>
             </motion.div>
+            {/* Reply from NCMEC or trusted adult – delay hardcoded in motion */}
+            {threadReplyText && (threadReplyFrom === "ncmec" || threadReplyFrom === "trusted_adult") && switchedContact && (
+              <motion.div
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: consequenceDelaySeconds, duration: CONSEQUENCE_ANIMATION_DURATION, ease: "easeOut" }}
+                className="flex items-end gap-2 justify-start"
+              >
+                <div className="w-12 h-12 rounded-full bg-gray-300 overflow-hidden shrink-0 self-end">
+                  <img src={switchedContact.image} alt="" className="w-full h-full object-cover" />
+                </div>
+                <div className="max-w-[80%]">
+                  <div className="bg-gray-200 text-gray-900 px-4 py-3 rounded-2xl rounded-bl-md shadow-sm">
+                    <p className="text-lg whitespace-pre-line">{threadReplyText}</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </>
         ) : (
           <>
-            {/* Sender message - friend (stats) or trafficker (threat) */}
+            {/* Sender message - helping friend (Erica), stats friend, or trafficker (threat) */}
             {showSenderMessage && (
               <motion.div
                 initial={{ opacity: 0, x: -12 }}
@@ -182,7 +233,7 @@ function QuestionDisplay({
               >
                 <div className="relative w-12 h-12 rounded-full bg-gray-300 overflow-hidden shrink-0 self-end">
                   <img
-                    src={friendInfo ? friendInfo.image : thiefImage}
+                    src={helpingFriendInfo ? helpingFriendInfo.image : friendInfo ? friendInfo.image : thiefImage}
                     alt=""
                     className="w-full h-full object-cover"
                   />
@@ -195,7 +246,7 @@ function QuestionDisplay({
                 <div className="max-w-[80%]">
                   <div className="bg-gray-200 text-gray-900 px-4 py-3 rounded-2xl rounded-bl-md shadow-sm">
                     <p className="whitespace-pre-line text-lg">
-                      {isStats ? friendStatsMessage : fullMessage || "No message"}
+                      {isHelping && displayMessage ? displayMessage : isStats ? friendStatsMessage : fullMessage || "No message"}
                     </p>
                   </div>
                 </div>
@@ -218,8 +269,8 @@ function QuestionDisplay({
               </motion.div>
             )}
 
-            {/* Player answer - right, when not showing switched thread and not block-only */}
-            {selectedAnswerText && !showBlockAnimation && !showSwitchedThread && (
+            {/* Player answer - right, when not showing switched thread and not block-only (use ourThreadMessage override for helping_friend incorrect A/B) */}
+            {displayPlayerBubble && (
               <motion.div
                 initial={{ opacity: 0, x: 12 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -228,7 +279,30 @@ function QuestionDisplay({
               >
                 <div className="max-w-[80%]">
                   <div className="bg-[#8B5CF6] text-white px-4 py-3 rounded-2xl rounded-br-md shadow-sm">
-                    <p className="text-lg">{selectedAnswerText}</p>
+                    <p className="text-lg">{playerBubbleText}</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+
+            {/* Reply in thread from trafficker or friend – delay hardcoded in motion */}
+            {threadReplyText && (threadReplyFrom === "trafficker" || threadReplyFrom === "friend") && (
+              <motion.div
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: consequenceDelaySeconds, duration: CONSEQUENCE_ANIMATION_DURATION, ease: "easeOut" }}
+                className="flex items-end gap-2 justify-start"
+              >
+                <div className="relative w-12 h-12 rounded-full bg-gray-300 overflow-hidden shrink-0 self-end">
+                  <img
+                    src={helpingFriendInfo ? helpingFriendInfo.image : friendInfo ? friendInfo.image : thiefImage}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="max-w-[80%]">
+                  <div className="bg-gray-200 text-gray-900 px-4 py-3 rounded-2xl rounded-bl-md shadow-sm">
+                    <p className="text-lg whitespace-pre-line">{threadReplyText}</p>
                   </div>
                 </div>
               </motion.div>

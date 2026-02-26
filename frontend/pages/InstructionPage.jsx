@@ -193,17 +193,32 @@ function InstructionPage() {
           </section>
           <section className={cardClass} style={cardStyle}>
             <div className="flex items-start gap-3">
-              <img src={gameruleImage} alt="" className="w-12 h-12" />
+              <img src={gameruleImage} alt="" className="w-12 h-12 shrink-0" />
               <div className="flex-1 min-w-0 mt-2">
-                <h2 className="text-3xl font-bold text-[#2d1b4e] mb-2">
+                <h2 className="text-3xl font-bold text-[#2d1b4e] mb-3">
                   GAME RULES
                 </h2>
-                <ul className="text-[#374151] text-2xl space-y-2">
-                  <li>10 Scenarios</li>
-                  <li>30 Seconds Each</li>
-                  <li>1 Hint</li>
-                  <li>2x Remove 2 Answers</li>
-                  <li>Faster = More Points</li>
+                <ul className="text-[#374151] text-2xl space-y-2 leading-relaxed">
+                  <li>
+                    <strong>10 scenarios</strong> — Mix of fake messages and
+                    quiz questions; pick the safest or correct answer.
+                  </li>
+                  <li>
+                    <strong>30 seconds each</strong> — Timer starts when the
+                    message appears; choose A, B, C, or D before time runs out.
+                  </li>
+                  <li>
+                    <strong>1 hint</strong> — One per game; reveals a clue to
+                    the right answer.
+                  </li>
+                  <li>
+                    <strong>2× Remove 2 answers</strong> — Use twice; removes
+                    two wrong options so you pick from the two left.
+                  </li>
+                  <li>
+                    <strong>Faster = more points</strong> — More time left when
+                    you answer gives a higher score.
+                  </li>
                 </ul>
               </div>
             </div>

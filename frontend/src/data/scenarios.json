@@ -20,7 +20,8 @@
         "reason": "Paying may lead to more demands for money and photos.",
         "consequence": "Threats often continue and you may lose money and control.",
         "doThisInstead": "Tell a trusted adult to remove the shame they're using to control you.",
-        "fact": "NCMEC received nearly 100 sextortion reports per day in 2024."
+        "fact": "NCMEC received nearly 100 sextortion reports per day in 2024.",
+        "threadReply": "Good. Now send more. $200 by tomorrow or everyone at school sees it."
       },
       "B": {
         "result": "incorrect",
@@ -28,7 +29,8 @@
         "reason": "Sending more gives them additional material to threaten you with.",
         "consequence": "You're giving them what they want and the blackmail can escalate.",
         "doThisInstead": "Block them immediately, tell an adult, and report to CyberTipline.",
-        "fact": "NCMEC received nearly 100 sextortion reports per day in 2024."
+        "fact": "NCMEC received nearly 100 sextortion reports per day in 2024.",
+        "threadReply": "Send them. You have 1 hour or I post what I have."
       },
       "C": {
         "result": "correct",
@@ -52,7 +54,8 @@
         "reason": "While not engaging is good, you also need to actively get help.",
         "consequence": "They may still post and the threat remains unresolved.",
         "doThisInstead": "Block, ignore, tell an adult, AND report - you need all four steps.",
-        "fact": "NCMEC received nearly 100 sextortion reports per day in 2024."
+        "fact": "NCMEC received nearly 100 sextortion reports per day in 2024.",
+        "threadReply": "Your silence won't stop me. 6 PM. Or it's going up."
       }
     },
     "hint": "The best response involves getting help from someone who can actually stop the crime."
@@ -132,7 +135,8 @@
         "reason": "A true partner would never threaten you - this is manipulation.",
         "consequence": "Sending more gives them more material to control you with.",
         "doThisInstead": "Recognize this as abuse, block them, and tell an adult for support.",
-        "fact": "60% of sextortion victims knew the perpetrator in person before the online threats began."
+        "fact": "60% of sextortion victims knew the perpetrator in person before the online threats began.",
+        "threadReply": "That's more like it. Send another one by tonight or I leak everything."
       },
       "B": {
         "result": "incorrect",
@@ -140,7 +144,8 @@
         "reason": "Someone making threats has already shown they don't care about you.",
         "consequence": "Reasoning keeps you engaged and wastes time better spent getting help.",
         "doThisInstead": "Stop all contact, tell an adult, and report to CyberTipline immediately.",
-        "fact": "60% of sextortion victims knew the perpetrator in person before the online threats began."
+        "fact": "60% of sextortion victims knew the perpetrator in person before the online threats began.",
+        "threadReply": "We're done talking. Send the photos or I post. Your choice."
       },
       "C": {
         "result": "correct",
@@ -163,7 +168,8 @@
         "reason": "Threatening back may make the situation worse and doesn't get you help.",
         "consequence": "Could make them angrier and may make you look aggressive in reports.",
         "doThisInstead": "Stay calm, block them, tell an adult, and let authorities handle it.",
-        "fact": "60% of sextortion victims knew the perpetrator in person before the online threats began."
+        "fact": "60% of sextortion victims knew the perpetrator in person before the online threats began.",
+        "threadReply": "You think I'm bluffing? Watch me. Sending now."
       }
     },
     "hint": "This is emotional blackmail. The best response is to break contact and get adult support."
@@ -188,7 +194,8 @@
         "reason": "AI sextortion is still sextortion - they can create unlimited fakes anytime.",
         "consequence": "Paying won't stop them and they may create more AI fakes.",
         "doThisInstead": "Report to TakeItDown.org and CyberTipline - creating AI deepfakes of minors is illegal.",
-        "fact": "Instagram and Snapchat are the two most common platforms for initial sextortion contact."
+        "fact": "Instagram and Snapchat are the two most common platforms for initial sextortion contact.",
+        "threadReply": "$500 received. Now send another $500 or I upload the videos everywhere."
       },
       "B": {
         "result": "correct",
@@ -211,7 +218,8 @@
         "reason": "Deleting accounts doesn't remove AI content or prevent threats.",
         "consequence": "The predator still has the fakes and you lose social connections.",
         "doThisInstead": "Keep the account as evidence and report to TakeItDown.org to remove AI fakes.",
-        "fact": "Instagram and Snapchat are the two most common platforms for initial sextortion contact."
+        "fact": "Instagram and Snapchat are the two most common platforms for initial sextortion contact.",
+        "threadReply": "I still have everything. Pay $500 or I post. Your move."
       },
       "D": {
         "result": "incorrect",
@@ -219,7 +227,8 @@
         "reason": "Requesting proof keeps you in contact and wastes critical time.",
         "consequence": "Real or fake doesn't matter - making the threat is already a crime.",
         "doThisInstead": "Assume the threat is real and report immediately without engaging.",
-        "fact": "Instagram and Snapchat are the two most common platforms for initial sextortion contact."
+        "fact": "Instagram and Snapchat are the two most common platforms for initial sextortion contact.",
+        "threadReply": "You don't need proof. You need to pay. $500. Today."
       }
     },
     "hint": "AI deepfakes are still a crime. Telling an adult removes the fear they're using."
@@ -281,17 +290,18 @@
   },
   {
     "scenarioNumber": 6,
-    "type": "threat",
+    "type": "helping_friend",
     "difficulty": "medium",
     "correctAnswerType": "tell_adult",
     "trustedAdult": "mom",
-    "message": "Your friend texts you: 'Someone is sextorting me. They want money and I'm scared. Please don't tell anyone - I'll handle it.'",
+    "helpingFriend": "erica",
+    "message": "Hi, {{playerName}} I am so scared right now, someone I don't know keep texting me and asked me to send them money otherwise they will post my image, are you there what should I do?",
     "question": "What should you do?",
     "options": [
-      { "id": "A", "text": "I keep their secret and just support them", "correct": false },
-      { "id": "B", "text": "I lend them money so they can pay the person", "correct": false },
-      { "id": "C", "text": "Tell a trusted adult – like a parent, counselor, or guardian", "correct": true },
-      { "id": "D", "text": "I tell a trusted adult so they can get help for my friend", "correct": false }
+      { "id": "A", "text": "Support them and keep their secret", "correct": false },
+      { "id": "B", "text": "Don't worry they won't post it if they have the money. If you want I can lend you the amount.", "correct": false },
+      { "id": "C", "text": "I'll go with you to tell a trusted adult – we can do this together.", "correct": true },
+      { "id": "D", "text": "Tell a trusted adult ourselves so they can help our friend.", "correct": false }
     ],
     "feedback": {
       "A": {
@@ -300,7 +310,9 @@
         "reason": "When someone's safety is at risk, keeping quiet can make things worse.",
         "consequence": "Your friend stays isolated in shame and the sextortion may continue.",
         "doThisInstead": "Help them get adult support - true friends prioritize safety over secrets.",
-        "fact": "Over the past several years, thousands of teens have lost millions of dollars to sextortion scams."
+        "fact": "Over the past several years, thousands of teens have lost millions of dollars to sextortion scams.",
+        "ourThreadMessage": "Hey that is alright, they don't know you there is nothing to be afraid of and I can keep your secrets about the images from other people",
+        "threadReply": "I am frightened and I don't think I can handle this any longer, I am anxious since they might post them..."
       },
       "B": {
         "result": "incorrect",
@@ -308,7 +320,9 @@
         "reason": "Lending money helps them make the wrong choice since paying rarely works.",
         "consequence": "The predator gets paid and may continue threatening with no solution.",
         "doThisInstead": "Help them report to authorities instead - money won't solve sextortion.",
-        "fact": "Over the past several years, thousands of teens have lost millions of dollars to sextortion scams."
+        "fact": "Over the past several years, thousands of teens have lost millions of dollars to sextortion scams.",
+        "ourThreadMessage": "Don't worry they won't post it if they have the money, if you want I can lend you the amount",
+        "threadReply": "I paid them but they're asking for more. I don't have any more money..."
       },
       "C": {
         "result": "correct",
@@ -330,7 +344,10 @@
         "reason": "Going behind their back may damage trust and make them feel betrayed.",
         "consequence": "Your friend might feel you violated their trust and shut down.",
         "doThisInstead": "Convince them to tell an adult WITH you for support - more effective approach.",
-        "fact": "Over the past several years, thousands of teens have lost millions of dollars to sextortion scams."
+        "fact": "Over the past several years, thousands of teens have lost millions of dollars to sextortion scams.",
+        "incorrectSwitchToAdult": true,
+        "ourMessageToAdult": "My friend is being sextorted, can you help them?",
+        "threadReply": "Oh my... that is terrifying and I am so sorry for your friend. Yes I can help but next time let's convince them to find someone close and a trusted adult to help."
       }
     },
     "hint": "Help them break the shame cycle by going with them to tell an adult."
@@ -355,7 +372,8 @@
         "reason": "Deleting messages destroys proof of the crime.",
         "consequence": "You'll have no evidence for reporting and be on a platform where messages auto-delete.",
         "doThisInstead": "SAVE messages as evidence first - screenshot everything before any action.",
-        "fact": "Predators often ask victims to switch to encrypted messaging apps to hide evidence from authorities."
+        "fact": "Predators often ask victims to switch to encrypted messaging apps to hide evidence from authorities.",
+        "threadReply": "Good. Now our messages disappear. Send $300 on Snapchat or I post your picture."
       },
       "B": {
         "result": "correct",
@@ -378,7 +396,8 @@
         "reason": "Deleting removes the proof you need to report the crime.",
         "consequence": "No evidence for authorities makes investigation much harder.",
         "doThisInstead": "Screenshot FIRST, then report with evidence - don't delete anything.",
-        "fact": "Predators often ask victims to switch to encrypted messaging apps to hide evidence from authorities."
+        "fact": "Predators often ask victims to switch to encrypted messaging apps to hide evidence from authorities.",
+        "threadReply": "You just wiped the evidence. Pay me $300 or I post. 10 minutes."
       },
       "D": {
         "result": "incorrect",
@@ -386,7 +405,8 @@
         "reason": "Switching keeps you engaged and moves to an app where messages disappear.",
         "consequence": "Snapchat auto-deletes messages and you stay in contact with the predator.",
         "doThisInstead": "Don't switch - screenshot current platform and report immediately.",
-        "fact": "Predators often ask victims to switch to encrypted messaging apps to hide evidence from authorities."
+        "fact": "Predators often ask victims to switch to encrypted messaging apps to hide evidence from authorities.",
+        "threadReply": "Perfect. Add me on Snap. Send $300 there. Don't waste my time."
       }
     },
     "hint": "They want you to destroy evidence and move to an app where messages disappear. Save proof first."
@@ -466,7 +486,8 @@
         "reason": "If they've asked 4 times, they may ask 5th and 6th times.",
         "consequence": "The cycle can continue forever with more demands and threats.",
         "doThisInstead": "Break the cycle NOW - tell an adult and report to authorities.",
-        "fact": "Between 2021 and 2023, sextortion reports increased by over 300%."
+        "fact": "Between 2021 and 2023, sextortion reports increased by over 300%.",
+        "threadReply": "Good. Now I want $500 more by next week. Or everything goes public."
       },
       "B": {
         "result": "incorrect",
@@ -474,7 +495,8 @@
         "reason": "Ignoring for 3 days hasn't worked - time to actively get help.",
         "consequence": "They may follow through with the 1-hour deadline as danger increases.",
         "doThisInstead": "Tell someone NOW - don't wait any longer.",
-        "fact": "Between 2021 and 2023, sextortion reports increased by over 300%."
+        "fact": "Between 2021 and 2023, sextortion reports increased by over 300%.",
+        "threadReply": "Your hour is up. Posting now."
       },
       "C": {
         "result": "correct",
@@ -497,7 +519,8 @@
         "reason": "You have no way to delete photos from the predator's device.",
         "consequence": "Impossible task that wastes time and doesn't stop the threat.",
         "doThisInstead": "Only TakeItDown.org and authorities can help remove images.",
-        "fact": "Between 2021 and 2023, sextortion reports increased by over 300%."
+        "fact": "Between 2021 and 2023, sextortion reports increased by over 300%.",
+        "threadReply": "You can't. Nobody can. Pay $500 or I post. 45 minutes left."
       }
     },
     "hint": "It's never too late to tell someone. Break the silence now."
@@ -523,7 +546,8 @@
         "reason": "They can still post even if you're not in the chat to see it.",
         "consequence": "Everyone may see the post except you - you're still victimized.",
         "doThisInstead": "Tell a trusted adult NOW (e.g. school counselor) - schools have resources to help and support you.",
-        "fact": "In 2024, the REPORT Act expanded mandatory reporting to include online enticement and child sex trafficking."
+        "fact": "In 2024, the REPORT Act expanded mandatory reporting to include online enticement and child sex trafficking.",
+        "threadReply": "Leaving won't stop me. I'm posting in the group chat in 2 hours. Pay or everyone sees."
       },
       "B": {
         "result": "incorrect",
@@ -531,7 +555,8 @@
         "reason": "Paying doesn't protect your reputation - they may still post or demand more.",
         "consequence": "You lose $400 and could still be exposed anyway.",
         "doThisInstead": "Your real reputation is how you HANDLE this - get help and show strength.",
-        "fact": "In 2024, the REPORT Act expanded mandatory reporting to include online enticement and child sex trafficking."
+        "fact": "In 2024, the REPORT Act expanded mandatory reporting to include online enticement and child sex trafficking.",
+        "threadReply": "Good. Now send another $400 next week or I post anyway. Your reputation is mine now."
       },
       "C": {
         "result": "correct",
@@ -554,7 +579,8 @@
         "reason": "Posting in the group chat alerts the predator and makes it more public.",
         "consequence": "They might post immediately to beat you and escalate unnecessarily.",
         "doThisInstead": "Tell adults privately first - let them decide how to safely warn others.",
-        "fact": "In 2024, the REPORT Act expanded mandatory reporting to include online enticement and child sex trafficking."
+        "fact": "In 2024, the REPORT Act expanded mandatory reporting to include online enticement and child sex trafficking.",
+        "threadReply": "You just made it worse. Posting your photo in the chat RIGHT NOW."
       }
     },
     "hint": "A trusted adult (like a school counselor) can help with both the threat and the social situation. Tell them first."

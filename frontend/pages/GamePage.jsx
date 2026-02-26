@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import GameHeader from "../src/components/GameBanner";
 import AbilityDisplay from "../src/components/AbilityDisplay";
@@ -11,6 +12,56 @@ import { useGame } from "../context/GameContext";
 
 const INITIAL_TIME = 30;
 const MESSAGE_DELAY_MS = 2000;
+
+const NCMEC_REPLY = "We're here for you. You're not alone. We'll help you remove any images of you online and support you through this. Can you send us some info and evidence (e.g. screenshots) so we can help?";
+
+function getTrustedAdultReply(name) {
+  return `I am here ${name || "sweetie"}, don't be scared. I will always be here for you. Where are you right now? I can come and help you get through this.`;
+}
+
+function getStatsFriendCorrectReply(name) {
+  return `Yes, you are correct ${name || "there"}, that is a surprising number isn't it!`;
+}
+
+function getStatsFriendIncorrectReply(correctAnswerText) {
+  return `Oh that's almost correct! The correct answer is ${correctAnswerText}. It's important to know these facts and stay safe.`;
+}
+
+function getHelpingFriendCorrectReply(playerName) {
+  return `Thank you so much for being there with me. I feel less alone.`;
+}
+
+function getThreadReply(pendingAnswer, currentScenario, playerName) {
+  if (!pendingAnswer || !currentScenario) return { text: null, from: null, playerMessageOverride: null, switchedThreadPlayerMessage: null };
+  const correctOptionId = currentScenario.options?.find((o) => o.correct)?.id;
+  const isCorrect = pendingAnswer.optionId === correctOptionId;
+  const fb = currentScenario.feedback?.[pendingAnswer.optionId];
+
+  if (isCorrect) {
+    const type = currentScenario.correctAnswerType;
+    if (type === "report") return { text: NCMEC_REPLY, from: "ncmec", playerMessageOverride: null, switchedThreadPlayerMessage: null };
+    if (type === "tell_adult") return { text: getTrustedAdultReply(playerName), from: "trusted_adult", playerMessageOverride: null, switchedThreadPlayerMessage: null };
+    if (currentScenario.type === "quiz") return { text: getStatsFriendCorrectReply(playerName), from: "friend", playerMessageOverride: null, switchedThreadPlayerMessage: null };
+    if (currentScenario.type === "helping_friend") return { text: getHelpingFriendCorrectReply(playerName), from: "friend", playerMessageOverride: null, switchedThreadPlayerMessage: null };
+    return { text: null, from: null, playerMessageOverride: null, switchedThreadPlayerMessage: null };
+  }
+
+  if (currentScenario.type === "helping_friend" && fb) {
+    if (fb.incorrectSwitchToAdult && fb.ourMessageToAdult) {
+      return { text: fb.threadReply, from: "trusted_adult", playerMessageOverride: null, switchedThreadPlayerMessage: fb.ourMessageToAdult };
+    }
+    if (fb.ourThreadMessage) {
+      return { text: fb.threadReply, from: "friend", playerMessageOverride: fb.ourThreadMessage, switchedThreadPlayerMessage: null };
+    }
+  }
+
+  if (currentScenario.type === "quiz") {
+    const correctOption = currentScenario.options?.find((o) => o.correct);
+    return { text: getStatsFriendIncorrectReply(correctOption?.text ?? "the one you didn't pick"), from: "friend", playerMessageOverride: null, switchedThreadPlayerMessage: null };
+  }
+  if (fb?.threadReply) return { text: fb.threadReply, from: "trafficker", playerMessageOverride: null, switchedThreadPlayerMessage: null };
+  return { text: null, from: null, playerMessageOverride: null, switchedThreadPlayerMessage: null };
+}
 
 function GamePage() {
     const navigate = useNavigate();
@@ -39,7 +90,10 @@ function GamePage() {
     const feedbackTimeoutRef = useRef(null);
     const messageDelayRef = useRef(null);
 
-    const FEEDBACK_DELAY_MS = 3000;
+    const FEEDBACK_DELAY_MS_DEFAULT = 3000;
+    const CONSEQUENCE_DELAY_SECONDS = 2;   // matches QuestionDisplay CONSEQUENCE_ANIMATION_DELAY (motion delay)
+    const POPUP_AFTER_CONSEQUENCE_MS = 5000;  // ms after consequence appears before popup
+    const FEEDBACK_DELAY_MS_WITH_CONSEQUENCE = CONSEQUENCE_DELAY_SECONDS * 1000 + POPUP_AFTER_CONSEQUENCE_MS;
 
     useEffect(() => {
         setPendingAnswer(null);
@@ -101,19 +155,34 @@ function GamePage() {
     }, [countdownStarted, showFeedback, showHintModal, pendingAnswer, timeRemaining]);
 
     const onContinue = () => {
+        setPendingAnswer(null); // clear thread so it doesn’t linger; was kept so player/consequence stayed visible during popup
         closeFeedback();
         setShowTransition(true);
     };
 
+    const { text: threadReplyText, from: threadReplyFrom, playerMessageOverride, switchedThreadPlayerMessage } = getThreadReply(pendingAnswer, currentScenario, playerName);
+
     const onSelectAnswer = (optionId, optionText) => {
         if (pendingAnswer) return;
         if (feedbackTimeoutRef.current) clearTimeout(feedbackTimeoutRef.current);
+        feedbackTimeoutRef.current = null;
+
+        const correctOptionId = currentScenario?.options?.find((o) => o.correct)?.id;
+        const isCorrect = optionId === correctOptionId;
+        const isDelayedConsequenceScenario =
+            isCorrect &&
+            (currentScenario?.correctAnswerType === "report" ||
+                currentScenario?.correctAnswerType === "tell_adult" ||
+                currentScenario?.type === "helping_friend");
+
         setPendingAnswer({ optionId, optionText });
+
+        const delayMs = isDelayedConsequenceScenario ? FEEDBACK_DELAY_MS_WITH_CONSEQUENCE : FEEDBACK_DELAY_MS_DEFAULT;
         feedbackTimeoutRef.current = setTimeout(() => {
             feedbackTimeoutRef.current = null;
             selectAnswer(optionId, timeRemaining);
-            setPendingAnswer(null);
-        }, FEEDBACK_DELAY_MS);
+            // Keep pendingAnswer so thread (player + consequence) stays visible while popup is open; clear on Continue
+        }, delayMs);
     };
 
     return (
@@ -130,10 +199,22 @@ function GamePage() {
                 </div>
             )}
             {showFeedback === "true" && (
-                <CorrectPopup feedback={lastFeedback} points={lastPoints} onContinue={onContinue} />
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 2, duration: 0.3 }}
+                >
+                    <CorrectPopup feedback={lastFeedback} points={lastPoints} onContinue={onContinue} />
+                </motion.div>
             )}
             {showFeedback === "false" && (
-                <IncorrectPopup feedback={lastFeedback} points={lastPoints} onContinue={onContinue} />
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 2, duration: 0.3 }}
+                >
+                    <IncorrectPopup feedback={lastFeedback} points={lastPoints} onContinue={onContinue} />
+                </motion.div>
             )}
 
             <GameHeader
@@ -160,6 +241,12 @@ function GamePage() {
                     trustedAdult={currentScenario?.trustedAdult}
                     selectedOptionId={pendingAnswer?.optionId}
                     correctOptionId={currentScenario?.options?.find((o) => o.correct)?.id}
+                    threadReplyText={threadReplyText}
+                    threadReplyFrom={threadReplyFrom}
+                    isHelpingFriend={currentScenario?.type === "helping_friend"}
+                    helpingFriend={currentScenario?.helpingFriend}
+                    switchedThreadPlayerMessage={switchedThreadPlayerMessage}
+                    playerMessageOverride={playerMessageOverride}
                 />
                 <ClockDisplay timeRemaining={timeRemaining} />
             </div>
