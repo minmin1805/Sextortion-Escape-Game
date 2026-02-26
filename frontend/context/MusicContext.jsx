@@ -13,6 +13,18 @@ export function MusicProvider({ children }) {
   const [activeTrack, setActiveTrackState] = useState('intro')
   const [isPlaying, setIsPlaying] = useState(true)
 
+  // Single source of truth: keep audio in sync with isPlaying (fixes toggle needing 3 clicks)
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    if (isPlaying) {
+      audio.volume = VOLUME
+      audio.play().catch(() => {})
+    } else {
+      audio.pause()
+    }
+  }, [isPlaying])
+
   const setActiveTrack = useCallback((track) => {
     if (track !== 'intro' && track !== 'game') return
     const audio = audioRef.current
@@ -22,27 +34,24 @@ export function MusicProvider({ children }) {
       audio.load()
     }
     setActiveTrackState(track)
-    setIsPlaying((was) => {
-      if (!was) return false
-      if (audio) {
-        audio.volume = VOLUME
-        audio.play().catch(() => {})
-      }
-      return true
-    })
+    // Don't set isPlaying here – let sync effect handle play so toggle state stays correct
   }, [])
 
   const toggleMusic = useCallback(() => {
     const audio = audioRef.current
-    if (!audio) return
-    if (isPlaying) {
-      audio.pause()
-      setIsPlaying(false)
-    } else {
-      audio.volume = VOLUME
-      audio.play().then(() => setIsPlaying(true)).catch(() => {})
-    }
-  }, [isPlaying])
+    setIsPlaying((prev) => {
+      const next = !prev
+      if (audio) {
+        if (next) {
+          audio.volume = VOLUME
+          audio.play().catch(() => {})
+        } else {
+          audio.pause()
+        }
+      }
+      return next
+    })
+  }, [])
 
   const startMusic = useCallback((trackOverride) => {
     const track = trackOverride === 'intro' || trackOverride === 'game' ? trackOverride : activeTrack
@@ -54,12 +63,14 @@ export function MusicProvider({ children }) {
     setActiveTrackState(track)
     if (!isPlaying) return
     audio.volume = VOLUME
-    audio.play().then(() => setIsPlaying(true)).catch(() => {})
+    audio.play().catch(() => {})
+    // Don't set isPlaying here – sync effect and toggle are the only source of truth (avoids 3-click bug)
   }, [activeTrack, isPlaying])
 
   const pauseMusic = useCallback(() => {
     const audio = audioRef.current
     if (audio) audio.pause()
+    // Don't set isPlaying to false – keeps "music on" as default when leaving content warning
   }, [])
 
   const value = { isPlaying, toggleMusic, startMusic, setActiveTrack, pauseMusic }

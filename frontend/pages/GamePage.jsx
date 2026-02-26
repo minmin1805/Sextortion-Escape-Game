@@ -10,6 +10,7 @@ import IncorrectPopup from "../src/components/IncorrectPopup";
 import { useGame } from "../context/GameContext";
 
 const INITIAL_TIME = 30;
+const MESSAGE_DELAY_MS = 2000;
 
 function GamePage() {
     const navigate = useNavigate();
@@ -33,19 +34,31 @@ function GamePage() {
     const [showHintModal, setShowHintModal] = useState(false);
     const [showTransition, setShowTransition] = useState(false);
     const [pendingAnswer, setPendingAnswer] = useState(null);
+    const [countdownStarted, setCountdownStarted] = useState(false);
     const prevTimeRemainingRef = useRef(INITIAL_TIME);
     const feedbackTimeoutRef = useRef(null);
+    const messageDelayRef = useRef(null);
 
     const FEEDBACK_DELAY_MS = 3000;
 
     useEffect(() => {
         setPendingAnswer(null);
+        setCountdownStarted(false);
         if (feedbackTimeoutRef.current) {
             clearTimeout(feedbackTimeoutRef.current);
             feedbackTimeoutRef.current = null;
         }
+        if (messageDelayRef.current) {
+            clearTimeout(messageDelayRef.current);
+            messageDelayRef.current = null;
+        }
+        messageDelayRef.current = setTimeout(() => {
+            messageDelayRef.current = null;
+            setCountdownStarted(true);
+        }, MESSAGE_DELAY_MS);
         return () => {
             if (feedbackTimeoutRef.current) clearTimeout(feedbackTimeoutRef.current);
+            if (messageDelayRef.current) clearTimeout(messageDelayRef.current);
         };
     }, [currentScenarioIndex]);
 
@@ -78,13 +91,14 @@ function GamePage() {
         prevTimeRemainingRef.current = timeRemaining;
     }, [timeRemaining, showFeedback, handleTimeUp]);
 
-    // 30s countdown; stop when feedback is showing or hint modal is open
+    // 30s countdown: start after message is shown, stop when feedback, hint modal, or answer chosen
     useEffect(() => {
-        if (showFeedback || showHintModal) return;
+        if (!countdownStarted) return;
+        if (showFeedback || showHintModal || pendingAnswer) return;
         if (timeRemaining <= 0) return;
         const t = setInterval(() => setTimeRemaining((p) => Math.max(0, p - 1)), 1000);
         return () => clearInterval(t);
-    }, [showFeedback, showHintModal, timeRemaining]);
+    }, [countdownStarted, showFeedback, showHintModal, pendingAnswer, timeRemaining]);
 
     const onContinue = () => {
         closeFeedback();
