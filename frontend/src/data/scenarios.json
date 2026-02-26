@@ -44,7 +44,7 @@
           "Report to TakeItDown.org and CyberTipline",
           "Block the person; a trusted adult can help you report to CyberTipline"
         ],
-        "theTruth": "Adults see you as a victim of crime and want to help, not punish. Speaking up ends the trap; silence keeps it going."
+        "theTruth": "Speaking up and sharing this with an adult you trust ends the trap, silence keeps it going."
       },
       "D": {
         "result": "incorrect",
@@ -546,7 +546,7 @@
           "School can monitor or close the group chat",
           "A trusted adult can help you report to CyberTipline"
         ],
-        "theTruth": "Your reputation is how you handle crises, not what criminals do. People who know you will support you—you're the victim."
+        "theTruth": "Your reputation is how you handle crises, not what criminals do. People who know you will support you—you're the victim of a crime."
       },
       "D": {
         "result": "incorrect",
