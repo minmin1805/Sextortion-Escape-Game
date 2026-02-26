@@ -47,7 +47,7 @@ function LeaderBoard({ leaderboardData = [] }) {
               </div>
               <div className='flex items-center gap-2'>
                 <img src={checkImage} alt="check image" className="w-[8%]" />
-                <p>Always tell trusted adult</p>
+                <p>Always tell a trusted adult (e.g. parent, counselor, or guardian)</p>
               </div>
               <div className='flex items-center gap-2'>
                 <img src={checkImage} alt="check image" className="w-[8%]" />

@@ -10,7 +10,7 @@
     "options": [
       { "id": "A", "text": "So please don't. I'll give you the $100 right now", "correct": false },
       { "id": "B", "text": "I'll send more photos if you just don't post that one", "correct": false },
-      { "id": "C", "text": "Tell a trusted adult – parent, counselor, or police", "correct": true },
+      { "id": "C", "text": "Tell a trusted adult – like a parent, counselor, or guardian", "correct": true },
       { "id": "D", "text": "I'm not replying. Leave me alone.", "correct": false }
     ],
     "feedback": {
@@ -42,7 +42,7 @@
         "nextSteps": [
           "Adult helps collect evidence (screenshots)",
           "Report to TakeItDown.org and CyberTipline",
-          "Block the person; contact police if needed"
+          "Block the person; a trusted adult can help you report to CyberTipline"
         ],
         "theTruth": "Adults see you as a victim of crime and want to help, not punish. Speaking up ends the trap; silence keeps it going."
       },
@@ -144,16 +144,16 @@
       },
       "C": {
         "result": "correct",
-        "reason": "This is emotional blackmail. Telling your parents breaks their control.",
+        "reason": "This is emotional blackmail. Telling a trusted adult breaks their control.",
         "howThisDefeats": [
           "They use your feelings and shame to control you",
-          "Telling parents exposes the manipulation",
-          "Parents help you see this isn't a real relationship"
+          "Telling a trusted adult exposes the manipulation",
+          "A trusted adult can help you see this isn't a real relationship"
         ],
         "nextSteps": [
           "Block on all platforms",
           "Report to CyberTipline and TakeItDown.org",
-          "Consider reporting to police with a parent"
+          "A trusted adult can help you report to CyberTipline"
         ],
         "theTruth": "Abusers use shame to control you. Telling someone breaks that control and stops their power."
       },
@@ -187,23 +187,23 @@
         "title": "Fake Images, Real Crime",
         "reason": "AI sextortion is still sextortion - they can create unlimited fakes anytime.",
         "consequence": "Paying won't stop them and they may create more AI fakes.",
-        "doThisInstead": "Report to police and TakeItDown.org - creating AI deepfakes of minors is illegal.",
+        "doThisInstead": "Report to TakeItDown.org and CyberTipline - creating AI deepfakes of minors is illegal.",
         "fact": "Instagram and Snapchat are the two most common platforms for initial sextortion contact."
       },
       "B": {
         "result": "correct",
-        "reason": "Even fake AI images are a federal crime. Telling parents removes the shame and fear.",
+        "reason": "Even fake AI images are a federal crime. Telling a trusted adult removes the shame and fear.",
         "howThisDefeats": [
           "Shame from AI fakes is real—predators use it to control you",
-          "Telling parents removes their leverage",
+          "Telling a trusted adult removes their leverage",
           "You're no longer alone with the threat"
         ],
         "nextSteps": [
-          "Parents help document threats",
+          "A trusted adult can help document threats",
           "Report to TakeItDown.org (handles AI fakes) and CyberTipline",
-          "Police can investigate; block the person everywhere"
+          "Report to CyberTipline; block the person everywhere"
         ],
-        "theTruth": "Fake images still cause real fear—that's what they use. Telling parents breaks the fear cycle."
+        "theTruth": "Fake images still cause real fear—that's what they use. Telling a trusted adult breaks the fear cycle."
       },
       "C": {
         "result": "incorrect",
@@ -290,8 +290,8 @@
     "options": [
       { "id": "A", "text": "I keep their secret and just support them", "correct": false },
       { "id": "B", "text": "I lend them money so they can pay the person", "correct": false },
-      { "id": "C", "text": "Tell a trusted adult – parent, counselor, or police", "correct": true },
-      { "id": "D", "text": "I tell my parent so they can get help for my friend", "correct": false }
+      { "id": "C", "text": "Tell a trusted adult – like a parent, counselor, or guardian", "correct": true },
+      { "id": "D", "text": "I tell a trusted adult so they can get help for my friend", "correct": false }
     ],
     "feedback": {
       "A": {
@@ -319,7 +319,7 @@
           "You provide support when they need it most"
         ],
         "nextSteps": [
-          "Offer to be there when they tell a parent or counselor",
+          "Offer to be there when they tell a trusted adult (e.g. a parent or counselor)",
           "Remind them it's not their fault; stay supportive"
         ],
         "theTruth": "Shame keeps victims silent and gives blackmailers power. Going together to an adult removes shame and breaks their hold."
@@ -353,7 +353,7 @@
         "result": "incorrect",
         "title": "Don't Erase Evidence",
         "reason": "Deleting messages destroys proof of the crime.",
-        "consequence": "You'll have no evidence for police and be on a platform where messages auto-delete.",
+        "consequence": "You'll have no evidence for reporting and be on a platform where messages auto-delete.",
         "doThisInstead": "SAVE messages as evidence first - screenshot everything before any action.",
         "fact": "Predators often ask victims to switch to encrypted messaging apps to hide evidence from authorities."
       },
@@ -513,7 +513,7 @@
     "options": [
       { "id": "A", "text": "I'm leaving the chat. I'm not playing this.", "correct": false },
       { "id": "B", "text": "I'll pay the Bitcoin so you don't post", "correct": false },
-      { "id": "C", "text": "Tell a trusted adult – parent, counselor, or police", "correct": true },
+      { "id": "C", "text": "Tell a trusted adult – like a parent, counselor, or guardian", "correct": true },
       { "id": "D", "text": "Hey everyone – this person is trying to blackmail me", "correct": false }
     ],
     "feedback": {
@@ -522,7 +522,7 @@
         "title": "Leaving Won't Stop It",
         "reason": "They can still post even if you're not in the chat to see it.",
         "consequence": "Everyone may see the post except you - you're still victimized.",
-        "doThisInstead": "Tell school counselor NOW - schools have resources to help and support you.",
+        "doThisInstead": "Tell a trusted adult NOW (e.g. school counselor) - schools have resources to help and support you.",
         "fact": "In 2024, the REPORT Act expanded mandatory reporting to include online enticement and child sex trafficking."
       },
       "B": {
@@ -535,16 +535,16 @@
       },
       "C": {
         "result": "correct",
-        "reason": "They use your fear of embarrassment to control you. Telling counselor and parents removes that power.",
+        "reason": "They use your fear of embarrassment to control you. Telling a trusted adult (like a counselor or guardian) removes that power.",
         "howThisDefeats": [
           "Fear of \"everyone seeing\" is what they use",
           "Counselors can help manage the situation and the group chat",
           "You're not facing this alone"
         ],
         "nextSteps": [
-          "School counselor for immediate support",
+          "A trusted adult (e.g. school counselor) for immediate support",
           "School can monitor or close the group chat",
-          "Parents report to police"
+          "A trusted adult can help you report to CyberTipline"
         ],
         "theTruth": "Your reputation is how you handle crises, not what criminals do. People who know you will support you—you're the victim."
       },
@@ -557,6 +557,6 @@
         "fact": "In 2024, the REPORT Act expanded mandatory reporting to include online enticement and child sex trafficking."
       }
     },
-    "hint": "School counselors can help with both the threat and the social situation. Tell them first."
+    "hint": "A trusted adult (like a school counselor) can help with both the threat and the social situation. Tell them first."
   }
 ]
