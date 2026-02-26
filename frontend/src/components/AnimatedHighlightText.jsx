@@ -74,7 +74,7 @@ export function AnimatedHighlightText({ text, highlights = [], className }) {
             key={`${i}-${char}`}
             variants={blurInUpVariants.item}
             className={cn(
-              "inline-block whitespace-pre",
+              "inline",
               highlightClass
             )}
           >

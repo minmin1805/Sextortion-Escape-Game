@@ -399,8 +399,7 @@ const TextAnimateBase = ({
             variants={finalVariants.item}
             custom={i * staggerTimings[by]}
             className={cn(
-              by === "line" ? "block" : "inline-block whitespace-pre",
-              by === "character" && "",
+              by === "line" ? "block" : by === "character" ? "inline" : "inline-block whitespace-pre",
               segmentClassName
             )}
             aria-hidden={accessible ? true : undefined}
