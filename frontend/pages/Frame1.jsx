@@ -20,7 +20,7 @@ function Frame1() {
           Every day, hundreds of teens receive a threatening message...
         </TextAnimate>
       </div>
-      <button onClick={handleContinue} className="bg-[#8B5CF6] text-white px-4 py-2 rounded-md absolute bottom-10 right-10 flex items-center gap-2">
+      <button onClick={handleContinue} className="fixed bottom-3 right-7 bg-[#8B5CF6] text-white px-4 py-2 rounded-md flex items-center gap-2">
         Continue <FaLongArrowAltRight />
       </button>
     </div>
