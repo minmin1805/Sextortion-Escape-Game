@@ -6,6 +6,7 @@ import LeaderBoard from "../src/components/LeaderBoard";
 import { IoMdDownload } from "react-icons/io";
 import { useGame } from "../context/GameContext";
 import { getLeaderboard } from "../src/services/playerService";
+import checklistPdf from "../src/assets/PDF/pdfchecklist.pdf";
 
 function getBadgeForScore(score) {
   if (score >= 8000) return "Sextortion Expert";
@@ -19,6 +20,21 @@ function EndgamePage() {
   const { playerName, score, correctAnswers } = useGame();
   const badge = getBadgeForScore(score ?? 0);
   const [leaderboardList, setLeaderboardList] = useState([]);
+
+  const handleDownloadChecklist = () => {
+    try {
+      const link = document.createElement("a");
+      link.href = checklistPdf;
+      // Use a friendly default filename; browser falls back to original if needed
+      link.download = "sextortion_safety_checklist.pdf";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch {
+      // As a fallback, open in a new tab so the browser can handle it
+      window.open(checklistPdf, "_blank", "noopener,noreferrer");
+    }
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -94,8 +110,8 @@ function EndgamePage() {
         <button
           type="button"
           className="bg-[#ddecff] text-blue-900 px-4 py-2 rounded-md text-xl font-bold flex items-center gap-2"
-          onClick={() => {}}
-          title="Download Safety Checklist (placeholder – add PDF link when ready)"
+          onClick={handleDownloadChecklist}
+          title="Download Safety Checklist PDF"
         >
           <IoMdDownload /> Download Safety Checklist!
         </button>
