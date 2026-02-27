@@ -137,11 +137,11 @@ function QuestionDisplay({
   const showBlockedBadge = showBlockAnimation;
 
   return (
-    <div className="bg-white w-[55%] min-h-[320px] rounded-2xl flex flex-col shadow-xl overflow-hidden border border-gray-200">
+    <div className="bg-white w-full md:w-[55%] min-h-[260px] md:min-h-[320px] rounded-2xl flex flex-col shadow-xl overflow-hidden border border-gray-200">
       {/* Top bar - Messenger style */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-gray-200 bg-white shrink-0">
+      <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 border-b border-gray-200 bg-white shrink-0">
         <div className="flex items-center gap-3">
-          <div className="relative w-12 h-12 rounded-full bg-gray-300 overflow-hidden shrink-0">
+          <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-300 overflow-hidden shrink-0">
             <img src={headerAvatar} alt="" className="w-full h-full object-cover" />
             {showBlockedBadge && (
               <div className="absolute inset-0 flex items-center justify-center bg-red-500/80 rounded-full">
@@ -149,13 +149,13 @@ function QuestionDisplay({
               </div>
             )}
           </div>
-          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2">
             <div>
-              <p className={`font-bold ${showBlockedBadge ? "text-red-600 line-through" : "text-gray-800"}`}>
+              <p className={`font-bold text-sm sm:text-base ${showBlockedBadge ? "text-red-600 line-through" : "text-gray-800"}`}>
                 {headerName}
               </p>
               {!showBlockedBadge && (
-                <p className="text-xs text-gray-500">{headerSubtitle}</p>
+                <p className="text-[10px] sm:text-xs text-gray-500">{headerSubtitle}</p>
               )}
             </div>
             {showBlockedBadge && (
@@ -164,22 +164,22 @@ function QuestionDisplay({
           </div>
         </div>
         {!showBlockedBadge && (
-          <div className="flex items-center gap-2 text-[#8B5CF6]">
-            <button type="button" className="p-2 rounded-full hover:bg-gray-100" aria-label="Call">
-              <IoCallOutline className="w-6 h-6" />
+          <div className="flex items-center gap-1 sm:gap-2 text-[#8B5CF6]">
+            <button type="button" className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100" aria-label="Call">
+              <IoCallOutline className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
-            <button type="button" className="p-2 rounded-full hover:bg-gray-100" aria-label="Video call">
-              <IoVideocamOutline className="w-6 h-6" />
+            <button type="button" className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100" aria-label="Video call">
+              <IoVideocamOutline className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
-            <button type="button" className="p-2 rounded-full hover:bg-gray-100" aria-label="Info">
-              <IoInformationCircleOutline className="w-6 h-6" />
+            <button type="button" className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100" aria-label="Info">
+              <IoInformationCircleOutline className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
             </button>
           </div>
         )}
       </div>
 
       {/* Thread area */}
-      <div className="flex-1 overflow-auto p-4 space-y-3 bg-[#f0f2f5] min-h-[200px]">
+      <div className="flex-1 overflow-auto p-3 sm:p-4 space-y-3 bg-[#f0f2f5] min-h-[180px] sm:min-h-[200px]">
         {showSwitchedThread ? (
           <>
             {/* Switched thread: player message then reply from NCMEC or trusted adult */}
@@ -189,13 +189,13 @@ function QuestionDisplay({
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="flex justify-end"
             >
-              <div className="max-w-[80%]">
-                <div className="bg-[#8B5CF6] text-white px-4 py-3 rounded-2xl rounded-br-md shadow-sm">
+                <div className="max-w-[85%] sm:max-w-[80%]">
+                <div className="bg-[#8B5CF6] text-white px-3 sm:px-4 py-2 sm:py-3 rounded-2xl rounded-br-md shadow-sm">
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.15, duration: 0.45, ease: "easeOut" }}
-                    className="text-lg whitespace-pre-line"
+                    className="text-sm sm:text-base md:text-lg whitespace-pre-line"
                   >
                     {switchedThreadPlayerMessage ?? (showReportAnimation ? NCMEC_MESSAGE : getTrustedAdultMessage(trustedAdult))}
                   </motion.p>
@@ -210,12 +210,12 @@ function QuestionDisplay({
                 transition={{ delay: consequenceDelaySeconds, duration: CONSEQUENCE_ANIMATION_DURATION, ease: "easeOut" }}
                 className="flex items-end gap-2 justify-start"
               >
-                <div className="w-12 h-12 rounded-full bg-gray-300 overflow-hidden shrink-0 self-end">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-300 overflow-hidden shrink-0 self-end">
                   <img src={switchedContact.image} alt="" className="w-full h-full object-cover" />
                 </div>
-                <div className="max-w-[80%]">
-                  <div className="bg-gray-200 text-gray-900 px-4 py-3 rounded-2xl rounded-bl-md shadow-sm">
-                    <p className="text-lg whitespace-pre-line">{threadReplyText}</p>
+                <div className="max-w-[85%] sm:max-w-[80%]">
+                  <div className="bg-gray-200 text-gray-900 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl rounded-bl-md shadow-sm">
+                    <p className="text-sm sm:text-base md:text-lg whitespace-pre-line">{threadReplyText}</p>
                   </div>
                 </div>
               </motion.div>
@@ -231,7 +231,7 @@ function QuestionDisplay({
                 transition={{ duration: 0.4, ease: "easeOut" }}
                 className="flex items-end gap-2 justify-start"
               >
-                <div className="relative w-12 h-12 rounded-full bg-gray-300 overflow-hidden shrink-0 self-end">
+                <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-300 overflow-hidden shrink-0 self-end">
                   <img
                     src={helpingFriendInfo ? helpingFriendInfo.image : friendInfo ? friendInfo.image : thiefImage}
                     alt=""
@@ -243,9 +243,9 @@ function QuestionDisplay({
                     </div>
                   )}
                 </div>
-                <div className="max-w-[80%]">
-                  <div className="bg-gray-200 text-gray-900 px-4 py-3 rounded-2xl rounded-bl-md shadow-sm">
-                    <p className="whitespace-pre-line text-lg">
+                <div className="max-w-[85%] sm:max-w-[80%]">
+                  <div className="bg-gray-200 text-gray-900 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl rounded-bl-md shadow-sm">
+                    <p className="whitespace-pre-line text-sm sm:text-base md:text-lg">
                       {isHelping && displayMessage ? displayMessage : isStats ? friendStatsMessage : fullMessage || "No message"}
                     </p>
                   </div>
@@ -261,9 +261,9 @@ function QuestionDisplay({
                 transition={{ duration: 0.5, ease: "easeOut" }}
                 className="flex justify-end"
               >
-                <div className="max-w-[80%]">
-                  <div className="bg-gray-300 text-gray-700 px-4 py-3 rounded-2xl rounded-br-md shadow-sm border border-gray-400">
-                    <p className="text-lg">You have blocked this user</p>
+                <div className="max-w-[85%] sm:max-w-[80%]">
+                  <div className="bg-gray-300 text-gray-700 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl rounded-br-md shadow-sm border border-gray-400">
+                    <p className="text-sm sm:text-base md:text-lg">You have blocked this user</p>
                   </div>
                 </div>
               </motion.div>
@@ -277,9 +277,9 @@ function QuestionDisplay({
                 transition={{ duration: 0.35, ease: "easeOut" }}
                 className="flex justify-end"
               >
-                <div className="max-w-[80%]">
-                  <div className="bg-[#8B5CF6] text-white px-4 py-3 rounded-2xl rounded-br-md shadow-sm">
-                    <p className="text-lg">{playerBubbleText}</p>
+                <div className="max-w-[85%] sm:max-w-[80%]">
+                  <div className="bg-[#8B5CF6] text-white px-3 sm:px-4 py-2 sm:py-3 rounded-2xl rounded-br-md shadow-sm">
+                    <p className="text-sm sm:text-base md:text-lg">{playerBubbleText}</p>
                   </div>
                 </div>
               </motion.div>
@@ -293,16 +293,16 @@ function QuestionDisplay({
                 transition={{ delay: consequenceDelaySeconds, duration: CONSEQUENCE_ANIMATION_DURATION, ease: "easeOut" }}
                 className="flex items-end gap-2 justify-start"
               >
-                <div className="relative w-12 h-12 rounded-full bg-gray-300 overflow-hidden shrink-0 self-end">
+                <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gray-300 overflow-hidden shrink-0 self-end">
                   <img
                     src={helpingFriendInfo ? helpingFriendInfo.image : friendInfo ? friendInfo.image : thiefImage}
                     alt=""
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="max-w-[80%]">
-                  <div className="bg-gray-200 text-gray-900 px-4 py-3 rounded-2xl rounded-bl-md shadow-sm">
-                    <p className="text-lg whitespace-pre-line">{threadReplyText}</p>
+                <div className="max-w-[85%] sm:max-w-[80%]">
+                  <div className="bg-gray-200 text-gray-900 px-3 sm:px-4 py-2 sm:py-3 rounded-2xl rounded-bl-md shadow-sm">
+                    <p className="text-sm sm:text-base md:text-lg whitespace-pre-line">{threadReplyText}</p>
                   </div>
                 </div>
               </motion.div>
@@ -312,21 +312,21 @@ function QuestionDisplay({
       </div>
 
       {/* Bottom entry text bar */}
-      <div className="flex items-center gap-2 px-4 py-3 border-t border-gray-200 bg-white shrink-0">
-        <button type="button" className="p-2 rounded-full hover:bg-gray-100 text-gray-500" aria-label="Attach">
-          <FaImage className="w-6 h-6" />
+      <div className="flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 border-t border-gray-200 bg-white shrink-0">
+        <button type="button" className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100 text-gray-500" aria-label="Attach">
+          <FaImage className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
         </button>
         <input
           type="text"
           placeholder="..."
           readOnly
-          className="flex-1 rounded-2xl bg-[#f0f2f5] px-4 py-2 min-h-[40px] text-gray-800 text-sm border-0 outline-none placeholder:text-gray-400"
+          className="flex-1 rounded-2xl bg-[#f0f2f5] px-3 sm:px-4 py-2 min-h-[36px] text-gray-800 text-xs sm:text-sm border-0 outline-none placeholder:text-gray-400"
         />
-        <button type="button" className="p-2 rounded-full hover:bg-gray-100 text-gray-500" aria-label="Emoji">
-          <IoHappyOutline className="w-6 h-6" />
+        <button type="button" className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100 text-gray-500" aria-label="Emoji">
+          <IoHappyOutline className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
         </button>
-        <button type="button" className="p-2 rounded-full hover:bg-gray-100 text-[#8B5CF6]" aria-label="Send">
-          <IoSendOutline className="w-6 h-6" />
+        <button type="button" className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100 text-[#8B5CF6]" aria-label="Send">
+          <IoSendOutline className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
         </button>
       </div>
     </div>

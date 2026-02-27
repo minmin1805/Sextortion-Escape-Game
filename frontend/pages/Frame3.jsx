@@ -49,7 +49,7 @@ function Frame3() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: TEXT_OVERLAY_DELAY_S + 0.5 }}
-        className="absolute bottom-10 right-10 bg-[#8B5CF6] text-white px-4 py-2 rounded-md flex items-center gap-2"
+        className="fixed bottom-3 right-7 bg-[#8B5CF6] text-white px-4 py-2 rounded-md flex items-center gap-2"
       >
         <FaLongArrowAltRight />
         Continue

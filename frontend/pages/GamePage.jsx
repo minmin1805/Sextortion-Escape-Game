@@ -223,35 +223,46 @@ function GamePage() {
                 score={score}
             />
 
-            <div className="flex flex-row w-full justify-center gap-15 mt-15">
-                <AbilityDisplay
-                    showHintModal={showHintModal}
-                    onHintOpen={() => setShowHintModal(true)}
-                    onCloseHint={() => setShowHintModal(false)}
-                />
-                <QuestionDisplay
-                    message={currentScenario?.message}
-                    question={currentScenario?.question}
-                    playerName={playerName}
-                    selectedAnswerText={pendingAnswer?.optionText}
-                    isTransitioning={showTransition}
-                    isStatsQuestion={currentScenario?.type === "quiz"}
-                    statsFriend={currentScenario?.statsFriend}
-                    correctAnswerType={currentScenario?.correctAnswerType}
-                    trustedAdult={currentScenario?.trustedAdult}
-                    selectedOptionId={pendingAnswer?.optionId}
-                    correctOptionId={currentScenario?.options?.find((o) => o.correct)?.id}
-                    threadReplyText={threadReplyText}
-                    threadReplyFrom={threadReplyFrom}
-                    isHelpingFriend={currentScenario?.type === "helping_friend"}
-                    helpingFriend={currentScenario?.helpingFriend}
-                    switchedThreadPlayerMessage={switchedThreadPlayerMessage}
-                    playerMessageOverride={playerMessageOverride}
-                />
-                <ClockDisplay timeRemaining={timeRemaining} />
+            {/* Main game layout: stack on small screens, row on larger */}
+            <div className="w-full max-w-6xl px-3 sm:px-4 md:px-8 mt-6 md:mt-10 flex flex-col lg:flex-row gap-6 lg:gap-10">
+                {/* Left column: abilities + clock (stack or row depending on width) */}
+                <div className="flex flex-row lg:flex-col items-start justify-between gap-4 lg:gap-6 w-full lg:w-auto">
+                    <AbilityDisplay
+                        showHintModal={showHintModal}
+                        onHintOpen={() => setShowHintModal(true)}
+                        onCloseHint={() => setShowHintModal(false)}
+                    />
+                    <div className="self-start">
+                        <ClockDisplay timeRemaining={timeRemaining} />
+                    </div>
+                </div>
+
+                {/* Center: chat/question thread */}
+                <div className="flex-1 min-w-0">
+                    <QuestionDisplay
+                        message={currentScenario?.message}
+                        question={currentScenario?.question}
+                        playerName={playerName}
+                        selectedAnswerText={pendingAnswer?.optionText}
+                        isTransitioning={showTransition}
+                        isStatsQuestion={currentScenario?.type === "quiz"}
+                        statsFriend={currentScenario?.statsFriend}
+                        correctAnswerType={currentScenario?.correctAnswerType}
+                        trustedAdult={currentScenario?.trustedAdult}
+                        selectedOptionId={pendingAnswer?.optionId}
+                        correctOptionId={currentScenario?.options?.find((o) => o.correct)?.id}
+                        threadReplyText={threadReplyText}
+                        threadReplyFrom={threadReplyFrom}
+                        isHelpingFriend={currentScenario?.type === "helping_friend"}
+                        helpingFriend={currentScenario?.helpingFriend}
+                        switchedThreadPlayerMessage={switchedThreadPlayerMessage}
+                        playerMessageOverride={playerMessageOverride}
+                    />
+                </div>
             </div>
 
-            <div className="mt-10">
+            {/* Answers – add horizontal padding and smaller top margin for phones */}
+            <div className="w-full max-w-6xl px-3 sm:px-4 md:px-8 mt-6 md:mt-10">
                 <AnswersDisplay
                     options={visibleOptions}
                     onSelectAnswer={onSelectAnswer}

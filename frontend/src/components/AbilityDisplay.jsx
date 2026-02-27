@@ -29,18 +29,18 @@ function AbilityDisplay({ showHintModal: showHintModalProp, onHintOpen, onCloseH
   const removeTwoRemaining = Math.max(0, 2 - removeTwoUsed);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-3">
-      <p className="text-3xl text-white font-bold">Abilities</p>
+    <div className="flex flex-col justify-center items-center gap-2 sm:gap-3">
+      <p className="text-2xl sm:text-3xl text-white font-bold">Abilities</p>
 
       <button
         type="button"
         onClick={onHintClick}
         disabled={hintDisabled}
-        className={`flex items-center justify-center rounded-2xl border border-black py-2 px-2 text-2xl font-bold gap-2 ${
+        className={`flex items-center justify-center rounded-2xl border border-black py-2 px-3 text-lg sm:text-xl md:text-2xl font-bold gap-2 ${
           hintDisabled ? "bg-gray-300 cursor-not-allowed opacity-60" : "bg-amber-100 hover:opacity-90"
         }`}
       >
-        <img src={lightbulbImage} className="h-10" alt="hint" />
+        <img src={lightbulbImage} className="h-7 sm:h-8 md:h-10" alt="hint" />
         Hint (1)
       </button>
 
@@ -48,11 +48,11 @@ function AbilityDisplay({ showHintModal: showHintModalProp, onHintOpen, onCloseH
         type="button"
         onClick={() => useRemoveTwo()}
         disabled={removeTwoDisabled}
-        className={`flex items-center justify-center rounded-2xl border border-black py-2 px-2 text-2xl font-bold gap-2 ${
+        className={`flex items-center justify-center rounded-2xl border border-black py-2 px-3 text-lg sm:text-xl md:text-2xl font-bold gap-2 ${
           removeTwoDisabled ? "bg-gray-300 cursor-not-allowed opacity-60" : "bg-[#ddecff] hover:opacity-90"
         }`}
       >
-        <img src={remove2Image} className="h-10" alt="remove 2" />
+        <img src={remove2Image} className="h-7 sm:h-8 md:h-10" alt="remove 2" />
         Remove 2 ({removeTwoRemaining})
       </button>
 
