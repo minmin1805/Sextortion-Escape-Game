@@ -66,11 +66,23 @@ function AppContent() {
   }, [playClickSound, playButtonClickSound])
 
   return (
-    <>
+    <div className="se-orientation-shell">
+      {/* When a phone is held upright, show this overlay and effectively block the game */}
+      <div className="se-orientation-overlay">
+        <div>
+          <h1>Sextortion Escape works best sideways</h1>
+          <p>
+            Please rotate your phone to landscape (sideways) to play. Once your screen is wider than
+            it is tall, the game will appear.
+          </p>
+        </div>
+      </div>
+
+      {/* Normal app content (visible when not in portrait on small screens) */}
       <MusicRouteSync />
       {showMusicToggle && <MusicToggleButton />}
       <Routes>
-      <Route path='/' element={<ContentWarningPage />} />
+        <Route path='/' element={<ContentWarningPage />} />
         <Route path='/welcome' element={<WelcomePage />} />
         <Route path='/frame1' element={<Frame1 />} />
         <Route path='/frame2' element={<Frame2 />} />
@@ -79,7 +91,7 @@ function AppContent() {
         <Route path='/instructions' element={<InstructionPage />} />
         <Route path='/endgame' element={<EndgamePage />} />
       </Routes>
-    </>
+    </div>
   )
 }
 
