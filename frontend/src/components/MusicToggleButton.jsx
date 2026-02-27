@@ -10,12 +10,12 @@ export default function MusicToggleButton() {
       type="button"
       onClick={toggleMusic}
       data-skip-global-click-sound
-      className="fixed bottom-3 left-3 max-[430px]:bottom-auto max-[430px]:left-auto max-[430px]:top-1.5 max-[430px]:right-1.5 z-50 flex items-center gap-1.5 max-[430px]:gap-0 px-2.5 py-2 max-[430px]:px-1 max-[430px]:py-0.5 rounded-lg max-[430px]:rounded-md bg-white/90 hover:bg-white shadow-md border border-gray-200 transition-colors"
+      className="fixed bottom-4 left-3 max-[430px]:bottom-auto max-[430px]:left-auto max-[430px]:top-1.5 max-[430px]:right-1.5 z-50 flex items-center gap-1.5 max-[430px]:gap-0 px-1 py-1 max-[430px]:px-1 max-[430px]:py-0.5 rounded-lg max-[430px]:rounded-md bg-white/90 hover:bg-white shadow-md border border-gray-200 transition-colors"
       aria-label={isPlaying ? 'Mute music' : 'Play music'}
       title={isPlaying ? 'Mute music' : 'Play music'}
     >
-      <SiYoutubemusic className={`w-7 h-7 max-[430px]:w-4 max-[430px]:h-4 text-red-600 ${isPlaying ? '' : 'opacity-60'}`} />
-      <span className="text-sm max-[430px]:hidden font-semibold text-gray-700">
+      <SiYoutubemusic className={`w-5 h-5 max-[430px]:w-4 max-[430px]:h-4 text-red-600 ${isPlaying ? '' : 'opacity-60'}`} />
+      <span className="text-xs max-[430px]:hidden font-semibold text-gray-700">
         {isPlaying ? 'Music on' : 'Toggle on music'}
       </span>
       {!isPlaying && (

@@ -9,7 +9,7 @@ function IncorrectPopup({ feedback, points, onContinue }) {
     <div className="fixed inset-0 z-50 bg-black/80 flex justify-center items-center px-3">
       {/* Card fills most of the screen on phone and scrolls if content is tall */}
       <div className="bg-[#ddecff] w-full max-w-md md:max-w-2xl max-h-[90vh] p-3 sm:p-4 rounded-2xl overflow-y-auto">
-        <div className="flex flex-col bg-white w-full justify-center items-center rounded-2xl">
+        <div className="flex flex-col bg-white w-full justify-center items-center rounded-2xl overflow-y-auto">
           {/* Header */}
           <div className="bg-[#e92727] flex items-center w-full px-2 sm:px-3 py-2">
             <IoClose className="w-10 h-10 sm:w-14 sm:h-14 md:w-[90px] md:h-[90px]" color="white" />

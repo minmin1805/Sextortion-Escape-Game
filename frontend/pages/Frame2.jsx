@@ -32,18 +32,18 @@ function Frame2() {
         <AnimatedHighlightText
           text={LINE1}
           highlights={LINE1_HIGHLIGHTS}
-          className="text-white text-4xl font-bold text-center"
+          className="text-white sm:text-4xl font-bold text-center text-2xl"
         />
         <AnimatedHighlightText
           text={LINE2}
           highlights={LINE2_HIGHLIGHTS}
-          className="text-white text-4xl font-bold text-center"
+          className="text-white sm:text-4xl font-bold text-center text-2xl"
         />
       </div>
 
       <button
         onClick={handleContinue}
-        className="fixed bottom-3 right-7 bg-[#8B5CF6] text-white px-4 py-2 rounded-md flex items-center gap-2"
+        className="fixed bottom-4 right-3 bg-[#8B5CF6] text-white px-2 py-1 rounded-md flex items-center gap-2"
       >
         Continue <FaLongArrowAltRight />
       </button>

@@ -8,7 +8,7 @@ function CorrectPopup({ feedback, points, onContinue }) {
     <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-50 px-3">
       {/* Card fills most of the screen on phone and scrolls if content is tall */}
       <div className="bg-[#ddecff] w-full max-w-md md:max-w-2xl max-h-[90vh] rounded-2xl border border-black p-3 sm:p-4 overflow-y-auto">
-        <div className="flex flex-col items-center justify-center bg-white rounded-2xl">
+        <div className="flex flex-col items-center justify-center bg-white rounded-2xl overflow-y-auto">
           {/* Header */}
           <div className="flex items-center bg-[#017407] border w-full gap-2 p-2 sm:p-3">
             <img src={correctImage} alt="correct image" className="w-[18%] max-w-[64px]" />

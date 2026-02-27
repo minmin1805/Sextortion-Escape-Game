@@ -416,55 +416,58 @@
     "type": "quiz",
     "difficulty": "medium",
     "statsFriend": "erica",
-    "message": "Since 2021, how many teen suicides have been linked to sextortion in the United States?",
-    "question": "Since 2021, how many teen suicides have been linked to sextortion in the United States?",
+    "message": "If someone tricks you into sharing your account passwords or login details, what could happen to your digital accounts?",
+    "question": "If someone tricks you into sharing your account passwords or login details, what could happen to your digital accounts?",
     "options": [
-      { "id": "A", "text": "I think it's 12+", "correct": false },
-      { "id": "B", "text": "I think it's 36+", "correct": true },
-      { "id": "C", "text": "I think it's 50+", "correct": false },
-      { "id": "D", "text": "I think it's 100+", "correct": false }
+      { "id": "A", "text": "Nothing serious - they will just view your account", "correct": false },
+      { "id": "B", "text": "They could lock you out and impersonate you", "correct": true },
+      { "id": "C", "text": "They will only read your old messages", "correct": false },
+      { "id": "D", "text": "Your accounts will be automatically deleted", "correct": false }
     ],
     "feedback": {
       "A": {
         "result": "incorrect",
-        "title": "Higher Than That",
-        "reason": "The reported number is at least 36 teen suicides linked to sextortion since 2021.",
-        "consequence": "Underestimating can make the crisis seem less urgent than it is.",
-        "doThisInstead": "Remember: 36+ teen suicides have been linked to sextortion - getting help saves lives.",
-        "fact": ""
+        "title": "Very Risky",
+        "reason": "Sharing login details gives them full control of your accounts.",
+        "consequence": "This can cause them to lock you out, impersonate you, use your account for their benefit or against you, and they could coerce you into doing things that harm your reputation or into giving them money to get control back - but that never happens.",
+        "doThisInstead": "NEVER share passwords with anyone - even people you think you trust.",
+        "fact": "40% of sextortion victims met the perpetrator for the first time."
       },
       "B": {
         "result": "correct",
-        "reason": "At least 36 teen suicides have been linked to sextortion since 2021. Getting help is critical.",
+        "reason": "If someone has your passwords, they could lock you out, impersonate you, send messages as you, and access all your private information.",
         "howThisDefeats": [
-          "Sextortion can have tragic outcomes when victims feel trapped",
-          "Telling an adult and getting support can prevent the worst",
-          "Reporting and support save lives"
+          "NEVER share passwords or login details with anyone",
+          "This prevents them from taking over your accounts",
+          "Keeps your private information and messages secure",
+          "You maintain control of your digital identity"
         ],
         "nextSteps": [
-          "Crisis: 988 Suicide & Crisis Lifeline",
-          "Tell a trusted adult; report to CyberTipline and 1-800-THE-LOST"
+          "Use strong, unique passwords for each account",
+          "Enable two-factor authentication (2FA)",
+          "Never share login codes or verification codes",
+          "Don't save passwords on shared devices"
         ],
-        "theTruth": "These deaths are why we take sextortion seriously. Telling someone and getting help can save lives—yours or a friend's."
+        "theTruth": "Your accounts contain your private life, contacts, and information. Protecting your login details is protecting yourself from multiple types of exploitation, including sextortion."
       },
       "C": {
         "result": "incorrect",
-        "title": "Verified Number Is 36+",
-        "reason": "The documented figure is at least 36; exact numbers are hard to confirm.",
-        "consequence": "The real number is still devastating and underscores the need for support.",
-        "doThisInstead": "36+ is the verified minimum - every one is a reason to get help and support others.",
-        "fact": ""
+        "title": "Much Worse Than That",
+        "reason": "With your login details, they can do much more than just read messages.",
+        "consequence": "This can cause them to impersonate you, lock you out, use your account for their benefit or against you, and they could coerce you into doing things that harm your reputation or into giving them money to get control back - but that never happens.",
+        "doThisInstead": "NEVER share passwords - this can cause serious damage with full account access.",
+        "fact": "40% of sextortion victims met the perpetrator for the first time."
       },
       "D": {
         "result": "incorrect",
-        "title": "Documented Minimum Is 36+",
-        "reason": "Authorities have linked at least 36 teen suicides to sextortion since 2021.",
-        "consequence": "Even 36+ is a crisis that shows why reporting and support matter.",
-        "doThisInstead": "The answer is 36+ - and that's why getting help is so important.",
-        "fact": ""
+        "title": "Worse Control Issues",
+        "reason": "They won't delete your account - they'll use it to impersonate and control you.",
+        "consequence": "This can cause them to send messages as you, access private info, lock you out, use your account for their benefit or against you, and they could coerce you into doing things that harm your reputation or into giving them money to get control back - but that never happens.",
+        "doThisInstead": "Protect your passwords always - once they have access, damage can be extensive.",
+        "fact": "40% of sextortion victims met the perpetrator for the first time."
       }
     },
-    "hint": "The number is in the dozens. This is why getting help is critical."
+    "hint": "With your login details, they can take over your account and pretend to be you."
   },
   {
     "scenarioNumber": 9,

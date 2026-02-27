@@ -16,11 +16,20 @@ function Frame1() {
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
       <div className="flex-1 flex items-center justify-center px-4">
-        <TextAnimate animation="blurInUp" by="character" duration={3} className="text-white text-4xl font-bold text-center">
-          Every day, hundreds of teens receive a threatening message...
+        <TextAnimate
+          animation="blurInUp"
+          by="character"
+          duration={3}
+          className="text-white sm:text-4xl font-bold text-center text-2xl"
+        >
+          Every day, hundreds of teens are threatened with exposure of private
+          images...
         </TextAnimate>
       </div>
-      <button onClick={handleContinue} className="fixed bottom-3 right-7 bg-[#8B5CF6] text-white px-4 py-2 rounded-md flex items-center gap-2">
+      <button
+        onClick={handleContinue}
+        className="fixed bottom-4 right-3 bg-[#8B5CF6] text-white px-2 py-1 rounded-md flex items-center gap-2"
+      >
         Continue <FaLongArrowAltRight />
       </button>
     </div>

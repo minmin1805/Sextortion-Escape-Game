@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import backgroundImage from "../src/assets/background/backgroundwithphone.png";
-import textoverlay from "../src/assets/Frame3/textoverlay3.png";
+import textoverlay from "../src/assets/Frame3/textoverlay4.png";
 import phoneSoundSrc from "../src/assets/Sound/phonesound.mp3";
 import { motion } from "motion/react";
 import { FaLongArrowAltRight } from "react-icons/fa";
@@ -39,7 +39,7 @@ function Frame3() {
         transition={{ duration: 1, delay: TEXT_OVERLAY_DELAY_S }}
         src={textoverlay}
         alt="textoverlay"
-        className="h-[50%] w-[50%] absolute top-[47%] left-[53%] transform -translate-x-1/2 -translate-y-1/2 scale-90"
+        className="h-[35%] w-[35%] absolute top-[47%] left-[53%] transform -translate-x-1/2 -translate-y-1/2 scale-90"
       />
 
       <motion.button
@@ -49,7 +49,7 @@ function Frame3() {
         initial={{ opacity: 0, y: 100 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: TEXT_OVERLAY_DELAY_S + 0.5 }}
-        className="fixed bottom-3 right-7 bg-[#8B5CF6] text-white px-4 py-2 rounded-md flex items-center gap-2"
+        className="fixed bottom-4 right-3 bg-[#8B5CF6] text-white px-2 py-1 rounded-md flex items-center gap-2"
       >
         <FaLongArrowAltRight />
         Continue

@@ -97,11 +97,11 @@ function EndgamePage() {
         <img
           src={logo}
           alt="logo"
-          className="w-60 sm:w-44 lg:w-[300px] self-start ml-4 sm:ml-6 mb-4 sm:mb-6"
+          className="w-60 sm:w-44 lg:w-[300px] self-start ml-4 sm:ml-6 mb-4 sm:mb-6 "
         />
 
         {/* Main content: stack vertically on small screens, row on larger */}
-        <div className="flex flex-col lg:flex-row items-stretch justify-center w-full max-w-6xl px-4 sm:px-6 gap-6 lg:gap-10 mt-4 sm:mt-8">
+        <div className="flex flex-col lg:flex-row items-stretch justify-center w-full max-w-8xl px-4 sm:px-6 gap-6 lg:gap-10 mt-4 sm:mt-8">
           <div className="w-full lg:w-auto flex justify-center">
             <ScoreDisplay />
           </div>
