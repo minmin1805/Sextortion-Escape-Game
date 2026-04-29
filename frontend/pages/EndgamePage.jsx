@@ -7,6 +7,7 @@ import { IoMdDownload } from "react-icons/io";
 import { useGame } from "../context/GameContext";
 import { getLeaderboard } from "../src/services/playerService";
 import checklistPdf from "../src/assets/PDF/pdfchecklist.pdf";
+import { trackTelemetryEvent } from "../src/services/telemetryService";
 
 function getBadgeForScore(score) {
   if (score >= 8000) return "Sextortion Expert";
@@ -23,6 +24,7 @@ function EndgamePage() {
 
   const handleDownloadChecklist = () => {
     try {
+      trackTelemetryEvent("ui.checklist_download_click");
       const link = document.createElement("a");
       link.href = checklistPdf;
       // Use a friendly default filename; browser falls back to original if needed
@@ -37,6 +39,7 @@ function EndgamePage() {
   };
 
   useEffect(() => {
+    trackTelemetryEvent("ui.endgame_view");
     let cancelled = false;
     (async () => {
       try {
@@ -97,11 +100,11 @@ function EndgamePage() {
         <img
           src={logo}
           alt="logo"
-          className="w-60 sm:w-44 lg:w-[300px] self-start ml-4 sm:ml-6 mb-4 sm:mb-6"
+          className="w-60 sm:w-44 lg:w-[300px] self-start ml-4 sm:ml-6 mb-4 sm:mb-6 "
         />
 
         {/* Main content: stack vertically on small screens, row on larger */}
-        <div className="flex flex-col lg:flex-row items-stretch justify-center w-full max-w-6xl px-4 sm:px-6 gap-6 lg:gap-10 mt-4 sm:mt-8">
+        <div className="flex flex-col lg:flex-row items-stretch justify-center w-full max-w-8xl px-4 sm:px-6 gap-6 lg:gap-10 mt-4 sm:mt-8">
           <div className="w-full lg:w-auto flex justify-center">
             <ScoreDisplay />
           </div>
@@ -129,6 +132,10 @@ function EndgamePage() {
             Exit To Main Menu
           </button>
         </div>
+
+        <p className="pb-8 pt-2 text-center text-xs text-slate-600 sm:text-sm">
+          Design &amp; development by Minh Doan
+        </p>
       </div>
     </div>
   );

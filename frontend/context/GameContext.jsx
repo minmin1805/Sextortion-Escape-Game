@@ -2,6 +2,11 @@ import {createContext, useContext, useState, useCallback, useRef, useEffect} fro
 import {createPlayer} from "../src/services/playerService";
 import scenarios from "../src/data/scenarios.json";
 import { updatePlayer } from "../src/services/playerService";
+import {
+  setTelemetryPlayerId,
+  trackTelemetryEvent,
+  telemetryApproxSessionDurationMs,
+} from "../src/services/telemetryService";
 
 const GameContext  = createContext(null);
 
@@ -81,6 +86,8 @@ export function GameProvider({children}) {
             setPlayerId(data.id);
             setSessionId(data.sessionId);
             setPlayerName(name.trim());
+            setTelemetryPlayerId(data.id);
+            trackTelemetryEvent("onboarding.player_created", {}, { playerOverride: data.id });
             // Reset game state so new player starts at question 1
             setCurrentScenarioIndex(0);
             setScore(0);
@@ -111,7 +118,23 @@ export function GameProvider({children}) {
         const foundOption = currentScenario.options.find((eachOption) => eachOption.id === optionId);
         const isCorrect = foundOption.correct;
         const pointsForThisAnswer = getPointsForTime(timeRemaining, isCorrect);
-        
+
+        trackTelemetryEvent(
+          "gameplay.answer_submitted",
+          {
+            scenarioNumber: currentScenario.scenarioNumber,
+            scenarioType: currentScenario.type,
+            optionId: foundOption?.id ?? "",
+            correct: !!isCorrect,
+            timedOut: false,
+            timeRemainingSecs:
+              typeof timeRemaining === "number" && Number.isFinite(timeRemaining)
+                ? timeRemaining
+                : -1,
+          },
+          { stepNumber: currentScenario.scenarioNumber },
+        );
+
         setScore((prev) => prev + pointsForThisAnswer);
         if(isCorrect) {
             setCorrectAnswers((prev) => prev + 1);
@@ -138,6 +161,20 @@ export function GameProvider({children}) {
     const handleTimeUp = useCallback(() => {
         if (!currentScenario) return;
         if (showFeedback) return;
+
+        trackTelemetryEvent(
+          "gameplay.answer_submitted",
+          {
+            scenarioNumber: currentScenario.scenarioNumber,
+            scenarioType: currentScenario.type,
+            optionId: "",
+            correct: false,
+            timedOut: true,
+            timeRemainingSecs: 0,
+          },
+          { stepNumber: currentScenario.scenarioNumber },
+        );
+
         setLastFeedback(TIMEOUT_FEEDBACK);
         setLastPoints(0);
         setLastAnswerCorrect(false);
@@ -163,6 +200,17 @@ export function GameProvider({children}) {
         const badge = getBadgeForScore(score);
 
         try {
+            trackTelemetryEvent(
+              "session.complete",
+              {
+                finalScore: score,
+                correctAnswers,
+                badge: badge ?? "",
+                durationMsApprox: telemetryApproxSessionDurationMs(),
+              },
+              { playerOverride: playerId ?? undefined },
+            );
+
             if(playerId) {
                 await updatePlayer(playerId, {
                     score,

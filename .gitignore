@@ -16,3 +16,6 @@ Plan.md
 REMAINING_STEPS.md
 
 NEXT_STEPS.md
+
+# Generated analytics (optional: remove this line to version sample reports)
+reports/**/*.json

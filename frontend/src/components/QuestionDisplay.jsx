@@ -137,7 +137,7 @@ function QuestionDisplay({
   const showBlockedBadge = showBlockAnimation;
 
   return (
-    <div className="bg-white w-full md:w-[55%] min-h-[260px] md:min-h-[320px] rounded-2xl flex flex-col shadow-xl overflow-hidden border border-gray-200">
+    <div className="bg-white w-full md:w-[55%] lg:w-full min-h-[260px] md:min-h-[320px] rounded-2xl flex flex-col shadow-xl overflow-hidden border border-gray-200">
       {/* Top bar - Messenger style */}
       <div className="flex items-center justify-between px-3 sm:px-4 py-2 sm:py-3 border-b border-gray-200 bg-white shrink-0">
         <div className="flex items-center gap-3">
