@@ -14,6 +14,7 @@ An educational **browser game** for teens and young people about **sextortion** 
 - [Environment variables](#environment-variables)
 - [Build for production](#build-for-production)
 - [Project structure](#project-structure)
+- [Telemetry & monthly metrics](#telemetry--monthly-metrics)
 - [Future work (Friend or Foe)](#future-work-friend-or-foe)
 - [License](#license)
 
@@ -207,8 +208,13 @@ Sextortion Escape/
 │   ├── server.js              # Express app, CORS, routes, optional static + SPA
 │   ├── lib/db.js              # MongoDB connect
 │   ├── models/Player.js       # Player schema
+│   ├── models/Event.js        # Telemetry events (append-only / idempotent upsert)
+│   ├── models/GameSession.js  # Optional rollup per analytic session
+│   ├── telemetry/eventSchema.js
 │   ├── controllers/playerController.js
-│   └── routes/playerRoutes.js # /api/players
+│   ├── controllers/telemetryController.js
+│   ├── routes/playerRoutes.js # /api/players
+│   └── routes/telemetryRoutes.js # /api/telemetry
 ├── frontend/
 │   ├── index.html
 │   ├── vite.config.js         # proxy /api → localhost:8000
@@ -218,14 +224,40 @@ Sextortion Escape/
 │   │   ├── index.css
 │   │   ├── data/scenarios.json
 │   │   ├── services/playerService.js
+│   │   ├── services/telemetryService.js
 │   │   ├── components/        # game UI, popups, banner, etc.
 │   │   └── assets/            # images, audio, PDFs
 │   ├── context/               # GameContext, Music, Sound
 │   └── pages/                 # per-route screens
-├── docs/                      # Friend or Foe design (future)
+├── docs/                      # KPI dictionary, Friend or Foe design, etc.
+├── scripts/metrics/           # generateSextortionEscapeMetrics.js
+├── reports/                   # generated JSON (gitignored by default)
 ├── package.json               # root scripts + backend deps
 └── .env                       # not committed; MONGO_URI, PORT
 ```
+
+---
+
+## Telemetry & monthly metrics
+
+- **KPI definitions, privacy notes, resume policy:** see **`docs/metrics.md`**.
+- **Ingest API:** `POST /api/telemetry/events` with body `{ "events": [ ... ] }` (batched). Events are validated per `backend/telemetry/eventSchema.js` (gameId `sextortion-escape`); unknown metadata keys are stripped.
+- **Frontend:** `frontend/src/services/telemetryService.js` batches non-blocking posts to `/api/telemetry/events` (Vite dev proxy forwards `/api` to the backend).
+- **Monthly JSON report** (requires `MONGO_URI` and data in the `events` collection):
+
+All time (no `--from` / `--to`):
+
+```bash
+npm run metrics:se
+```
+
+Specific month:
+
+```bash
+npm run metrics:se -- --from 2026-01-01 --to 2026-01-31T23:59:59.999Z --env production
+```
+
+Output: **`reports/all-time/sextortion-escape-metrics.json`** (all-time) or **`reports/YYYY-MM/sextortion-escape-metrics.json`** (bounded window).
 
 ---
 

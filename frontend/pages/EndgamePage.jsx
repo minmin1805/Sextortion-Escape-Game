@@ -7,6 +7,7 @@ import { IoMdDownload } from "react-icons/io";
 import { useGame } from "../context/GameContext";
 import { getLeaderboard } from "../src/services/playerService";
 import checklistPdf from "../src/assets/PDF/pdfchecklist.pdf";
+import { trackTelemetryEvent } from "../src/services/telemetryService";
 
 function getBadgeForScore(score) {
   if (score >= 8000) return "Sextortion Expert";
@@ -23,6 +24,7 @@ function EndgamePage() {
 
   const handleDownloadChecklist = () => {
     try {
+      trackTelemetryEvent("ui.checklist_download_click");
       const link = document.createElement("a");
       link.href = checklistPdf;
       // Use a friendly default filename; browser falls back to original if needed
@@ -37,6 +39,7 @@ function EndgamePage() {
   };
 
   useEffect(() => {
+    trackTelemetryEvent("ui.endgame_view");
     let cancelled = false;
     (async () => {
       try {

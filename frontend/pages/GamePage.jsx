@@ -9,6 +9,7 @@ import AnswersDisplay from "../src/components/AnswersDisplay";
 import CorrectPopup from "../src/components/CorrectPopup";
 import IncorrectPopup from "../src/components/IncorrectPopup";
 import { useGame } from "../context/GameContext";
+import { trackTelemetryEvent } from "../src/services/telemetryService";
 
 const INITIAL_TIME = 30;
 const MESSAGE_DELAY_MS = 2000;
@@ -138,6 +139,7 @@ function GamePage() {
     totalScenarios,
     score,
     playerName,
+    removeTwoUsed,
     visibleOptions,
     selectAnswer,
     closeFeedback,
@@ -153,12 +155,52 @@ function GamePage() {
   const prevTimeRemainingRef = useRef(INITIAL_TIME);
   const feedbackTimeoutRef = useRef(null);
   const messageDelayRef = useRef(null);
+  const prevRemoveTwoUsedRef = useRef(removeTwoUsed ?? 0);
 
   const FEEDBACK_DELAY_MS_DEFAULT = 3000;
   const CONSEQUENCE_DELAY_SECONDS = 2; // matches QuestionDisplay CONSEQUENCE_ANIMATION_DELAY (motion delay)
   const POPUP_AFTER_CONSEQUENCE_MS = 5000; // ms after consequence appears before popup
   const FEEDBACK_DELAY_MS_WITH_CONSEQUENCE =
     CONSEQUENCE_DELAY_SECONDS * 1000 + POPUP_AFTER_CONSEQUENCE_MS;
+
+  useEffect(() => {
+    const s = currentScenario;
+    if (s?.scenarioNumber != null)
+      trackTelemetryEvent(
+        "gameplay.level_start",
+        {
+          scenarioNumber: s.scenarioNumber,
+          scenarioType: s.type ?? "unknown",
+          difficulty: typeof s.difficulty === "string" ? s.difficulty : undefined,
+        },
+        { stepNumber: s.scenarioNumber },
+      );
+  }, [currentScenario?.scenarioNumber]);
+
+  useEffect(() => {
+    if (!showHintModal || currentScenario?.scenarioNumber == null) return;
+    trackTelemetryEvent(
+      "gameplay.hint_opened",
+      { scenarioNumber: currentScenario.scenarioNumber },
+      { stepNumber: currentScenario.scenarioNumber },
+    );
+  }, [showHintModal, currentScenario?.scenarioNumber]);
+
+  useEffect(() => {
+    const prev = prevRemoveTwoUsedRef.current ?? 0;
+    if (
+      typeof removeTwoUsed === "number" &&
+      removeTwoUsed > prev &&
+      currentScenario?.scenarioNumber != null
+    ) {
+      trackTelemetryEvent(
+        "gameplay.remove_two_used",
+        { scenarioNumber: currentScenario.scenarioNumber },
+        { stepNumber: currentScenario.scenarioNumber },
+      );
+    }
+    prevRemoveTwoUsedRef.current = removeTwoUsed;
+  }, [removeTwoUsed, currentScenario?.scenarioNumber]);
 
   useEffect(() => {
     setPendingAnswer(null);
@@ -229,6 +271,12 @@ function GamePage() {
   ]);
 
   const onContinue = () => {
+    if (currentScenario?.scenarioNumber != null)
+      trackTelemetryEvent(
+        "gameplay.feedback_continue",
+        { scenarioNumber: currentScenario.scenarioNumber },
+        { stepNumber: currentScenario.scenarioNumber },
+      );
     setPendingAnswer(null); // clear thread so it doesn’t linger; was kept so player/consequence stayed visible during popup
     closeFeedback();
     setShowTransition(true);

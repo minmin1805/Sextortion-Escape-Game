@@ -13,6 +13,8 @@ import { SoundProvider, useSounds } from '../context/SoundContext'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import MusicToggleButton from './components/MusicToggleButton'
+import TelemetryRouteListener from './components/TelemetryRouteListener.jsx'
+import { trackTelemetryShellReady } from './services/telemetryService.js'
 
 const INTRO_MUSIC_ROUTES = ['/frame1', '/frame2', '/frame3', '/welcome']
 const ROUTES_WITH_MUSIC = [
@@ -53,6 +55,14 @@ function AppContent() {
   const showMusicToggle = ROUTES_WITH_MUSIC.includes(location.pathname)
 
   useEffect(() => {
+    try {
+      trackTelemetryShellReady()
+    } catch {
+      /* telemetry must not crash app */
+    }
+  }, [])
+
+  useEffect(() => {
     const handleGlobalClick = (ev) => {
       if (ev.target.closest('[data-skip-global-click-sound]')) return
       if (ev.target.closest('button, [role="button"]')) {
@@ -79,6 +89,7 @@ function AppContent() {
       </div>
 
       {/* Normal app content (visible when not in portrait on small screens) */}
+      <TelemetryRouteListener />
       <MusicRouteSync />
       {showMusicToggle && <MusicToggleButton />}
       <Routes>

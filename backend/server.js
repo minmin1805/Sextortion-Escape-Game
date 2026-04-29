@@ -5,6 +5,7 @@ import cors from 'cors';
 import path from 'path';
 import connectDB from './lib/db.js';
 import playerRoutes from './routes/playerRoutes.js';
+import telemetryRoutes from "./routes/telemetryRoutes.js";
 
 dotenv.config();
 
@@ -22,6 +23,8 @@ app.use(cors({
 app.use(express.json());
 
 app.use("/api/players", playerRoutes);
+
+app.use("/api/telemetry", telemetryRoutes);
 
 
 const PORT = process.env.PORT || 8000;
@@ -41,7 +44,3 @@ app.listen(PORT, () => {
 });
 
 export default app;
-
-
-
-//doanlyminh2005_db_user  6QHlR83Lz2UyvhVj
