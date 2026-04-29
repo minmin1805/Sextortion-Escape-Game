@@ -132,6 +132,10 @@ function EndgamePage() {
             Exit To Main Menu
           </button>
         </div>
+
+        <p className="pb-8 pt-2 text-center text-xs text-slate-600 sm:text-sm">
+          Design &amp; development by Minh Doan
+        </p>
       </div>
     </div>
   );
